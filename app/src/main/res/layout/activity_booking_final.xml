@@ -307,7 +307,7 @@
                     app:layout_constraintStart_toStartOf="parent">
 
                     <Button
-                        android:id="@+id/button2"
+                        android:id="@+id/booking_btn"
                         android:layout_width="301dp"
                         android:layout_height="62dp"
                         android:layout_marginTop="30dp"
@@ -326,7 +326,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="5dp"
                         android:text="@string/remain"
-                        app:layout_constraintBottom_toTopOf="@+id/button2"
+                        app:layout_constraintBottom_toTopOf="@+id/booking_btn"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent" />
 
