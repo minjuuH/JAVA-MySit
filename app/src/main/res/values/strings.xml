@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">MySit</string>
+    <string name="app_name">MySeat</string>
     <string name="button_send">Send</string>
     <string name="editText">아무말이나 입력하세요!</string>
     <string name="subText">예약 장소</string>
-    <string name="booking_btn">sitting</string>
+    <string name="booking_btn">seating</string>
     <string name="date_info">예약 일자 및 시간</string>
     <string name="user_info">예약자 정보</string>
     <string name="precautions">※ 유의 사항</string>
