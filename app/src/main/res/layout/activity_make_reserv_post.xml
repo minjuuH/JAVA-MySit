@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:padding="16dp"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".make_reserv_post">
 
     <ScrollView
         android:layout_width="match_parent"
