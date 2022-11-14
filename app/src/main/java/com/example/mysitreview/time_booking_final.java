@@ -3,6 +3,7 @@ package com.example.mysitreview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,6 +14,10 @@ public class time_booking_final extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_booking_final);
+
+        //이미지 출력
+        ImageView imageView = findViewById(R.id.imageView);
+        imageView.setImageResource(R.mipmap.ic_launcher);
 
         //텍스트필드 객체 받아옴
         TextView bn = (TextView)findViewById(R.id.bookingname);
@@ -33,7 +38,12 @@ public class time_booking_final extends AppCompatActivity {
         findViewById(R.id.pbooking_btn).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "예약 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(time_booking_final.this, choice_menu.class));
+
+                //엑티비티 하나를 제외하고 나머지 히스토리를 모두 지우는 코드
+                Intent i = new Intent(time_booking_final.this, choice_menu.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+                startActivity(i);
             }
         });
     }
