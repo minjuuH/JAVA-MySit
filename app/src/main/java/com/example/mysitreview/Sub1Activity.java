@@ -11,6 +11,8 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 //import com.example.mysitreview.MyReCyclerAdapter;
+//리사이클러뷰 연습 코드
+//activity_sub와 연계
 
 public class Sub1Activity extends AppCompatActivity implements rvInterface {
 
