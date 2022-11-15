@@ -30,14 +30,14 @@
                     android:padding="16dp"
                     android:text="제목" />
 
-                <TextView
+                <EditText
                     android:id="@+id/title_tv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:hint="제목을 입력하세요"
                     android:background="#eeeeee"
-                    android:padding="16dp"
-                    android:text="제목입니다." />
+                    android:padding="16dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -90,11 +90,13 @@
                 android:padding="16dp"
                 android:text="내용입니다." />
 
-            <TextView
+            <EditText
+                android:id="@+id/editText_writeContent"
                 android:layout_width="match_parent"
                 android:layout_height="279dp"
                 android:padding="16dp"
-                android:text="자세한 소개내용을 작성해주세요." />
+                android:inputType="textMultiLine"
+                android:hint="내용을 입력하세요" />
 
         </LinearLayout>
     </ScrollView>
@@ -106,6 +108,7 @@
 
         <Button
             android:id="@+id/reg_button"
+            android:onClick="button_board_register"
             android:layout_width="match_parent"
             android:layout_height="58dp"
             android:padding="8dp"

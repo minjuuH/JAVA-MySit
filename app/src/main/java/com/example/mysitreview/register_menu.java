@@ -1,15 +1,17 @@
 package com.example.mysitreview;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -65,8 +67,9 @@ public class register_menu extends AppCompatActivity {
 
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
                             Toast.makeText(register_menu.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-                            finish();
-                            startActivity(new Intent(register_menu.this, MainActivity.class));
+                            emailVerification();
+
+
                         } else {
                             Toast.makeText(register_menu.this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
                         }
@@ -74,5 +77,30 @@ public class register_menu extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    //확인 메일 날리는 곳
+    public void emailVerification(){
+        final FirebaseUser user = mFirebaseAuth.getCurrentUser();
+        user.sendEmailVerification().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(register_menu.this , "확인 이메일을 보냈습니다 확인부탁드립니다" , Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(register_menu.this, MainActivity.class));
+                }else{
+                    Toast.makeText(register_menu.this, "메일 발송에 실패했습니다" + user.getEmail() + "입니다", Toast.LENGTH_SHORT).show();
+                    try {
+                        task.getResult();
+                    }catch (Exception e){
+                        Log.d("Fail send_email" , e.getMessage());
+                    }finally {
+                        return;
+                    }
+                }
+
+            }
+        });
+
     }
 }

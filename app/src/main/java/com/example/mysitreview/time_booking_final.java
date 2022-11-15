@@ -42,7 +42,6 @@ public class time_booking_final extends AppCompatActivity {
                 //엑티비티 하나를 제외하고 나머지 히스토리를 모두 지우는 코드
                 Intent i = new Intent(time_booking_final.this, choice_menu.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-
                 startActivity(i);
             }
         });
