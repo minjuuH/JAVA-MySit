@@ -2,7 +2,6 @@ package com.example.mysitreview;
 
 public class Board {
 
-
         private String title;
         private String content;
         private String uid;
