@@ -30,8 +30,7 @@ public class choice_menu extends AppCompatActivity {
         findViewById(R.id.buttonFree).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "마이페이지로 이동합니다.", Toast.LENGTH_SHORT).show();
-                Intent i = new Intent(choice_menu.this, user_info.class);
-                startActivity(i);
+                startActivity(new Intent(choice_menu.this, UserInfoActivity.class));
             }
         });
     }
