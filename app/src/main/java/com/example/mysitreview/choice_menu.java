@@ -16,14 +16,15 @@ public class choice_menu extends AppCompatActivity {
         findViewById(R.id.buttonReserv).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "자유 예약으로 이동합니다.", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(choice_menu.this, make_reserv_post.class));
+                //글 등록 화면 등록 버튼에 연결 완료
+                //startActivity(new Intent(choice_menu.this, make_reserv_post.class));
             }
         });
 
         findViewById(R.id.buttonPlace).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "시간 선택으로 이동합니다.", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(choice_menu.this, time_choice_plus.class));
+                Toast.makeText(getApplicationContext(), "장소 선택으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(choice_menu.this, SelectPlace.class));
             }
         });
 

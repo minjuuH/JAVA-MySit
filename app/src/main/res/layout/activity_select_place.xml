@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         app:layout_anchor="@+id/constraintLayout"
         app:layout_anchorGravity="center"
-        tools:context=".Sub1Activity">
+        tools:context=".SelectPlace">
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
@@ -32,7 +32,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="389dp"
-            android:layout_height="600dp"
+            android:layout_height="450dp"
             android:layout_margin="20dp"
             android:layout_marginTop="20dp"
             android:layout_weight="1"
@@ -44,6 +44,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_view" />
+
+        <Button
+            android:id="@+id/Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:onClick="onButtonClick"
+            android:text="글작성"
+            app:layout_anchor="@+id/constraintLayout"
+            app:layout_anchorGravity="end|bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

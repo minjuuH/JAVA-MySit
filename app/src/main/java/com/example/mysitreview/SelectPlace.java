@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 //리사이클러뷰 연습 코드
 //activity_sub와 연계
 
-public class Sub1Activity extends AppCompatActivity implements rvInterface {
+public class SelectPlace extends AppCompatActivity implements rvInterface {
 
     private ArrayList<MainData> arrayList;
     private MainAdapter mainAdapter;
@@ -24,7 +26,7 @@ public class Sub1Activity extends AppCompatActivity implements rvInterface {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub);
+        setContentView(R.layout.activity_select_place);
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -47,7 +49,12 @@ public class Sub1Activity extends AppCompatActivity implements rvInterface {
 
     @Override
     public void onItemClick(int position) {
-        Intent subPage = new Intent(Sub1Activity.this, SubActivity.class);
+        Intent subPage = new Intent(SelectPlace.this, time_choice_plus.class);
         startActivity(subPage);
+    }
+
+    public void onButtonClick(View v) {
+        Toast.makeText(getApplicationContext(), "글 등록으로 이동합니다.", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(SelectPlace.this, make_reserv_post.class));
     }
 }
