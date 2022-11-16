@@ -10,6 +10,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+//빌드 오류인건지 OnCompleteListener , Task import 문에 오류가 발생
+//하지만 실행해보면 문제없이 실행됨. 확인 필요
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
