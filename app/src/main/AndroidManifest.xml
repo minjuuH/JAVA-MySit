@@ -78,6 +78,14 @@
         </activity>
 
         <activity
+            android:name=".time_choice_plus"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
             android:name=".time_booking_final"
             android:exported="false">
             <meta-data

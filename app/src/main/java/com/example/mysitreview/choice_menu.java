@@ -23,7 +23,7 @@ public class choice_menu extends AppCompatActivity {
         findViewById(R.id.buttonPlace).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "시간 선택으로 이동합니다.", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(choice_menu.this, time_choice.class));
+                startActivity(new Intent(choice_menu.this, time_choice_plus.class));
             }
         });
 
