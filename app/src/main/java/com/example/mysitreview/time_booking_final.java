@@ -11,6 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class time_booking_final extends AppCompatActivity {
 
+    //두자리 서식 지정을 위한 함수 지정
+    public String format(int n){
+        if(n<10)
+            return "0"+Integer.toString(n);
+        return Integer.toString(n);
+    }
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_booking_final);
@@ -27,13 +34,20 @@ public class time_booking_final extends AppCompatActivity {
         TextView dt = (TextView)findViewById(R.id.datetext);
         TextView tt = (TextView)findViewById(R.id.timetext);
 
+        Intent intent = getIntent();
+
+        //intet에서 받아온 값의 출력 서식 지정
+        String dateText = Integer.toString(intent.getIntExtra("년", 0))+"-"+format(intent.getIntExtra("월", 0))
+                +"-"+format(intent.getIntExtra("일", 0));
+        String timeText = format(intent.getIntExtra("시",0))+":"+format(intent.getIntExtra("분",0));
+
         //추후 데이터 연결 작업 필요
         bn.setText("장소명");
         bi.setText("장소 상세 정보");
         nt.setText("예약자");
         pt.setText("010-xxxx-xxxx");
-        dt.setText("20xx.xx.xx(일)");
-        tt.setText("00:00 - 00:00");
+        dt.setText(dateText);
+        tt.setText(timeText);
 
         findViewById(R.id.pbooking_btn).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

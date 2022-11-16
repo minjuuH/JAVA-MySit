@@ -60,7 +60,16 @@ public class time_choice_plus extends AppCompatActivity {
             chrono1.stop();
             chrono1.setTextColor(Color.BLACK);
             tvResult.setText(selectYear+"년"+selectMonth+"월"+selectDay+"일"+tPicker1.getCurrentHour()+"시"+tPicker1.getCurrentMinute()+"분에 예약되었습니다.");
-            startActivity(new Intent(time_choice_plus.this, time_booking_final.class));
+
+            //값을 전달하기 위한 intent 생성
+            Intent intent = new Intent(time_choice_plus.this, time_booking_final.class);
+
+            //time_booking_final로 값 전달
+            intent.putExtra("년", selectYear); intent.putExtra("월", selectMonth); intent.putExtra("일", selectDay);
+            intent.putExtra("시", tPicker1.getCurrentHour()); intent.putExtra("분", tPicker1.getCurrentMinute());
+
+            //time_booking_final 시작
+            startActivity(intent);
         });
 
        calView1.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
