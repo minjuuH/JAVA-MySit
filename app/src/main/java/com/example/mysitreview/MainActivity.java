@@ -10,8 +10,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-//빌드 오류인건지 OnCompleteListener , Task import 문에 오류가 발생
-//하지만 실행해보면 문제없이 실행됨. 확인 필요
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -28,6 +26,25 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference mDatabaseRef; // 실시간 데이터베이스
     private EditText mEtEmail, mEtPwd;      // 회원가입 입력필드
 
+    //연속 클릭인지 판단하기 위한 변수 선언
+    private final long finishtimeed = 1000;
+    private long presstime = 0;
+
+    //뒤로가기 버튼 클릭 시 실행할 이벤트 메소드
+    public void onBackPressed() {
+        long tempTime = System.currentTimeMillis();
+        long intervalTime = tempTime - presstime;
+
+        if (0 <= intervalTime && finishtimeed >= intervalTime)
+        {
+            finish();
+        }
+        else
+        {
+            presstime = tempTime;
+            Toast.makeText(getApplicationContext(), "한번더 누르시면 앱이 종료됩니다", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +70,8 @@ public class MainActivity extends AppCompatActivity {
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
                             if(user.isEmailVerified()){ //그 계정이 실제로 존재하는 계정인지
                                 Log.d("login", "signInWithEmail:success" + user.getEmail());
-                                Toast.makeText(MainActivity.this, "signInWithEmail:success." + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(MainActivity.this, "signInWithEmail:success." + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "로그인되었습니다.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(MainActivity.this, choice_menu.class);
                                 startActivity(intent);
                                 finish(); // 현재 액티비티 파괴
@@ -61,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "인증이 되지 않은 이메일입니다 해당 이메일 주소에서 링크를 클릭해주세요", Toast.LENGTH_SHORT).show();
                                 return;
                             }
-                            Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
 
 
                         }else{
