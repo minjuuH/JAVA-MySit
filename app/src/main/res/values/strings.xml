@@ -2,6 +2,7 @@
     <string name="app_name">MySeat</string>
     <string name="button_send">Send</string>
     <string name="editText">아무말이나 입력하세요!</string>
+    <string name="register_guide">인증 메일이 전송되었습니다.\n이메일의 링크를 확인하면 가입이 완료됩니다.</string>
     <string name="subText">예약 장소</string>
     <string name="booking_btn">seating</string>
     <string name="date_info">예약 일자 및 시간</string>
