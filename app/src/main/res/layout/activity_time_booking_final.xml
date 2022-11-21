@@ -311,6 +311,11 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="match_parent"
+                    android:layout_height="128dp" />
+
             </LinearLayout>
         </ScrollView>
 
