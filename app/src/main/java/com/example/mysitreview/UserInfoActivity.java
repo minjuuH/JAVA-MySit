@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,10 +16,12 @@ public class UserInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
 
+        ImageView profileimage = (ImageView)findViewById(R.id.profileImage);
+        profileimage.setImageResource(R.drawable.profile_photo);
+
         TextView reviseBnt = (TextView)findViewById(R.id.reviseBnt);
 
         EditText username = (EditText)findViewById(R.id.username);
-        //EditText useremail = (EditText)findViewById(R.id.useremail);
         EditText userphone = (EditText)findViewById(R.id.userphone);
         EditText userpw = (EditText)findViewById(R.id.userpw);
 
@@ -31,6 +34,7 @@ public class UserInfoActivity extends AppCompatActivity {
                 //비밀번호 입력 edittext 객체를 활성화
                 userpw.setEnabled(true);
                 userpw.setVisibility(View.VISIBLE);
+                userpw.setText("");
 
                 //비밀번호 확인 버튼 활성화
                 pwcheck.setVisibility(View.VISIBLE);
