@@ -36,6 +36,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <!-- 회원 요약 정보 -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -78,6 +79,7 @@
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
+                <!-- 회원 정보 -->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,6 +88,7 @@
                     android:orientation="vertical"
                     app:layout_constraintStart_toStartOf="parent">
 
+                    <!-- 회원 정보 타이틀 바 -->
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -118,11 +121,13 @@
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
+                    <!-- 구분선 -->
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
                         android:background="#808080" />
 
+                    <!-- 회원 정보: 이름 카테고리 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -152,6 +157,7 @@
                             android:textSize="14sp"/>
                     </LinearLayout>
 
+                    <!-- 회원 정보: 이메일 카테고리 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -181,6 +187,7 @@
                             android:textSize="14sp"/>
                     </LinearLayout>
 
+                    <!-- 회원 정보: 전화번호 카테고리 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -210,6 +217,7 @@
                             android:textSize="14sp" />
                     </LinearLayout>
 
+                    <!-- 회원 정보: 비밀번호 카테고리 -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -229,15 +237,65 @@
 
                         <EditText
                             android:id="@+id/userpw"
-                            android:layout_width="match_parent"
+                            android:layout_width="208dp"
                             android:layout_height="match_parent"
                             android:background="@null"
-                            android:padding="10dp"
                             android:enabled="false"
+                            android:visibility="gone"
                             android:hint="비밀번호 입력"
-                            android:textColorHint="@color/white"
+                            android:padding="10dp"
                             android:textSize="14sp" />
+
+                        <!-- 버튼 배치를 위한 ConstraintLayout 배치 -->
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 버튼 색상 지정을 위한 AppCompatButton 객체 생성 -->
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/checkBnt"
+                                android:layout_width="60dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="10dp"
+                                android:background="@color/gray"
+                                android:text="확인"
+                                android:textColor="@color/black"
+                                android:visibility="gone"
+                                android:enabled="false"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
+
+                    <!-- 구분선 -->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gray" />
+
+                    <!-- 회원 정보 수정시 사용할 버튼 -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/completeBnt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="35dp"
+                            android:background="@color/gray"
+                            android:layout_margin="5dp"
+                            android:text="완료"
+                            android:textColor="@color/black"
+                            android:textSize="15sp"
+                            android:visibility="gone"
+                            android:enabled="false"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </LinearLayout>
 
