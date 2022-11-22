@@ -66,7 +66,7 @@ public class register_menu extends AppCompatActivity {
                             account.setPhNum(strPhNum);
 
                             mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
-                            Toast.makeText(register_menu.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(register_menu.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
                             emailVerification();
 
 
@@ -86,8 +86,8 @@ public class register_menu extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(register_menu.this , "확인 이메일을 보냈습니다 확인부탁드립니다" , Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(register_menu.this, MainActivity.class));
+                    //Toast.makeText(register_menu.this , "확인 이메일을 보냈습니다 확인부탁드립니다" , Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(register_menu.this, RegisterComplete.class));
                 }else{
                     Toast.makeText(register_menu.this, "메일 발송에 실패했습니다" + user.getEmail() + "입니다", Toast.LENGTH_SHORT).show();
                     try {
