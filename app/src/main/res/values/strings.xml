@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">MySeat</string>
+    <string name="button_send">Send</string>
+    <string name="editText">아무말이나 입력하세요!</string>
+    <string name="register_guide">인증 메일이 전송되었습니다.\n이메일의 링크를 확인하면 가입이 완료됩니다.</string>
+    <string name="subText">예약 장소</string>
+    <string name="booking_btn">seating</string>
+    <string name="date_info">예약 일자 및 시간</string>
+    <string name="user_info">예약자 정보</string>
+    <string name="precautions">※ 유의 사항</string>
+    <string name="precautions_contents">• 예약 변경 및 취소는 예약일 하루 전까지 가능합니다.\n• 예약 변경 및 취소 방법\n   - 회원 정보 -> 예약 정보 -> 예약 변경/취소</string>
+    <string name="precautions_booking">• 예약 취소는 마감일 하루 전까지 가능합니다.\n• 예약 취소 방법\n   - 회원 정보 -> 예약 정보 -> 예약 취소</string>
+    <string name="remain">잔여 : n</string>
+    <string name="_10_00">10:00</string>
+    <string name="_11_00">11:00</string>
+    <string name="_12_00">12:00</string>
+    <string name="_13_00">13:00</string>
+    <string name="_14_00">14:00</string>
+    <string name="_15_00">15:00</string>
+    <string name="예약">예약</string>
+</resources>
