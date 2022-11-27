@@ -28,6 +28,12 @@ public class SelectPlace extends AppCompatActivity implements rvInterface {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_place);
 
+        findViewById(R.id.SelectButton).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                startActivity(new Intent(SelectPlace.this, WritePostActivity.class));
+            }
+        });
+
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -49,7 +55,7 @@ public class SelectPlace extends AppCompatActivity implements rvInterface {
 
     @Override
     public void onItemClick(int position) {
-        Intent subPage = new Intent(SelectPlace.this, time_choice_plus.class);
+        Intent subPage = new Intent(SelectPlace.this, ShowWritedPost.class);
         startActivity(subPage);
     }
 
