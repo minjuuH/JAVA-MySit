@@ -17,7 +17,7 @@ public class choice_menu extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "자유 예약으로 이동합니다.", Toast.LENGTH_SHORT).show();
                 //글 등록 화면 등록 버튼에 연결 완료
-                //startActivity(new Intent(choice_menu.this, make_reserv_post.class));
+                startActivity(new Intent(choice_menu.this, WriteFreePostActivity.class));
             }
         });
 
