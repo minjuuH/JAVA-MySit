@@ -35,11 +35,11 @@ public class register_menu extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("myseat");
 
-        mEtEmail = findViewById(R.id.edit_id);
-        mEtPwd = findViewById(R.id.edit_pw);
+        mEtEmail = findViewById(R.id.txt_Id);
+        mEtPwd = findViewById(R.id.txt_Pwd);
         mBtnRegister = findViewById(R.id.register);
-        EditText UserName = findViewById(R.id.edit_username);
-        EditText PhoneNumber = findViewById(R.id.edit_phnum);
+        EditText UserName = findViewById(R.id.txt_UserName);
+        EditText PhoneNumber = findViewById(R.id.txt_PhNum);
         PhoneNumber.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
@@ -50,31 +50,40 @@ public class register_menu extends AppCompatActivity {
                 String strPwd = mEtPwd.getText().toString();
                 String strUserName = UserName.getText().toString();
                 String strPhNum = PhoneNumber.getText().toString();
+                String passwordCheck = ((EditText)findViewById(R.id.txt_PwdCheck)).getText().toString();
 
 
                 // Firebase Auth 진행
-                mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(register_menu.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser(); // 회원가입된 유저 가져옴
-                            UserAccount account = new UserAccount();
-                            account.setIdToken(firebaseUser.getUid());
-                            account.setIdToken(firebaseUser.getEmail());
-                            account.setPassword(strPwd);
-                            account.setName(strUserName);
-                            account.setPhNum(strPhNum);
+                if(strEmail.length()>0 && strPwd.length()>0 && passwordCheck.length()>0 && strUserName.length()>0 && strPhNum.length()>12){
+                    if(strPwd.equals(passwordCheck)){
+                        mFirebaseAuth.createUserWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(register_menu.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    FirebaseUser firebaseUser = mFirebaseAuth.getCurrentUser(); // 회원가입된 유저 가져옴
+                                    UserAccount account = new UserAccount();
+                                    account.setIdToken(firebaseUser.getUid());
+                                    account.setIdToken(firebaseUser.getEmail());
+                                    account.setPassword(strPwd);
+                                    account.setName(strUserName);
+                                    account.setPhNum(strPhNum);
 
-                            mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
-                            //Toast.makeText(register_menu.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-                            emailVerification();
-
-
-                        } else {
-                            Toast.makeText(register_menu.this, "회원가입에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
-                        }
+                                    mDatabaseRef.child("UserAccount").child(firebaseUser.getUid()).setValue(account);
+                                    Toast.makeText(register_menu.this, "회원가입에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
+                                    emailVerification();
+                                } else {
+                                    Toast.makeText(register_menu.this, "중복된 아이디이거나 비밀번호가 6자리 미만입니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    }else{
+                        Toast.makeText(register_menu.this, "비밀번호가 일치하지 않습니다.",
+                                Toast.LENGTH_SHORT).show();
                     }
-                });
+                }else{
+                    Toast.makeText(register_menu.this, "빈칸을 입력해주세요.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
