@@ -54,43 +54,53 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseAuth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("myseat");
 
-        mEtEmail = findViewById(R.id.edit_id);
-        mEtPwd = findViewById(R.id.edit_pw);
+        mEtEmail = findViewById(R.id.txt_Id);
+        mEtPwd = findViewById(R.id.txt_Pwd);
 
 
-        findViewById(R.id.login).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_Login).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 String strEmail = mEtEmail.getText().toString();
                 String strPwd = mEtPwd.getText().toString();
 
-                mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
-                            FirebaseUser user = mFirebaseAuth.getCurrentUser();
-                            if(user.isEmailVerified()){ //그 계정이 실제로 존재하는 계정인지
-                                Log.d("login", "signInWithEmail:success" + user.getEmail());
-                                //Toast.makeText(MainActivity.this, "signInWithEmail:success." + user.getEmail(), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(MainActivity.this, "로그인되었습니다.", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(MainActivity.this, choice_menu.class);
-                                startActivity(intent);
-                                finish(); // 현재 액티비티 파괴
+                if(strEmail.length()>0 && strPwd.length()>0){
+                    mFirebaseAuth.signInWithEmailAndPassword(strEmail, strPwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+                                FirebaseUser user = mFirebaseAuth.getCurrentUser();
+                                if(user.isEmailVerified()){ //그 계정이 실제로 존재하는 계정인지
+                                    Log.d("login", "signInWithEmail:success" + user.getEmail());
+                                    Toast.makeText(MainActivity.this, "signInWithEmail:success." + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(MainActivity.this, choice_menu.class);
+                                    startActivity(intent);
+                                    finish(); // 현재 액티비티 파괴
+                                }else{
+                                    Toast.makeText(MainActivity.this, "인증이 되지 않은 이메일입니다 해당 이메일 주소에서 링크를 클릭해주세요", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
+                                Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+
+
                             }else{
-                                Toast.makeText(MainActivity.this, "인증이 되지 않은 이메일입니다 해당 이메일 주소에서 링크를 클릭해주세요", Toast.LENGTH_SHORT).show();
-                                return;
+                                Toast.makeText(MainActivity.this, "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
                             }
-                            //Toast.makeText(getApplicationContext(), "로그인 되었습니다.", Toast.LENGTH_SHORT).show();
-
-
-                        }else{
-                            Toast.makeText(MainActivity.this, "로그인에 실패하셨습니다.", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                });
+                    });
+                }else{
+                    Toast.makeText(MainActivity.this, "이메일 또는 비밀번호를 입력해주세요.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
-        findViewById(R.id.goregister).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_ResetPwd).setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Toast.makeText(getApplicationContext(), "비밀번호 재설정으로 이동합니다.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, ResetPwdActivity.class));
+            }
+        });
+        findViewById(R.id.btn_Register).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "회원등록으로 이동합니다.", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(MainActivity.this, register_menu.class));
