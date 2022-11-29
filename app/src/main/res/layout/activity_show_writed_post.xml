@@ -22,49 +22,53 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-    <EditText
-        android:id="@+id/titleEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="제목"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
-
-    <EditText
-        android:id="@+id/introduce"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="한줄소개 내용"
-        android:inputType="textPersonName"
-        android:minHeight="48dp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal" >
-
-        <EditText
-            android:id="@+id/openTime"
+        <TextView
+            android:id="@+id/titleEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="@drawable/layout_background"
             android:ems="10"
-            android:hint="영업시작 시간 : 00:00"
-            android:inputType="time"
+            android:hint="제목"
+            android:inputType="textPersonName"
             android:minHeight="48dp" />
 
-        <EditText
-            android:id="@+id/endTime"
+        <TextView
+            android:id="@+id/introduce"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:background="@drawable/layout_background"
             android:ems="10"
-            android:hint="영업종료 시간 : 00:00"
-            android:inputType="time"
+            android:hint="한줄소개 내용"
+            android:inputType="textPersonName"
             android:minHeight="48dp" />
-    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/openTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/layout_background"
+                android:ems="20"
+                android:hint="영업시작 시간 : 00:00"
+                android:inputType="time"
+                android:minHeight="48dp" />
+
+            <TextView
+                android:id="@+id/endTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/layout_background"
+                android:ems="10"
+                android:hint="영업종료 시간 : 00:00"
+                android:inputType="time"
+                android:minHeight="48dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/contentsLayout"
@@ -72,7 +76,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include
+            <TextView
                 layout="@layout/view_contents_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -105,8 +109,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_centerHorizontal="true">
+                android:layout_centerHorizontal="true"
+                android:orientation="vertical">
 
             </LinearLayout>
 
@@ -116,12 +120,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"/>
-
-        <Button
-            android:id="@+id/check"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="시간 선택으로 이동" />
 
     </LinearLayout>
 
@@ -155,6 +153,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/check"
+            android:layout_width="300dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="55dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/layout_background"
+            android:text="시간 선택으로 이동"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
