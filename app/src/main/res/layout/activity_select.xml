@@ -13,6 +13,21 @@
         app:layout_anchorGravity="center"
         tools:context=".SelectPlace">
 
+        <TextView
+            android:id="@+id/noneList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/NoneText"
+            android:textSize="18sp"
+
+            android:enabled="false"
+            android:visibility="gone"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search_view"
             android:layout_width="match_parent"
@@ -38,9 +53,9 @@
             android:layout_weight="1"
             android:scrollbarFadeDuration="0"
             android:scrollbarSize="5dp"
-
             android:scrollbarThumbVertical="@android:color/darker_gray"
             android:scrollbars="vertical"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_view" />
@@ -49,14 +64,14 @@
             android:id="@+id/SelectButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
             android:onClick="onButtonClick"
             android:text="글작성"
             app:layout_anchor="@+id/constraintLayout"
             app:layout_anchorGravity="end|bottom"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recycler_view" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
