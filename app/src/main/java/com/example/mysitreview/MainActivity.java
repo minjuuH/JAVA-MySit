@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                                 FirebaseUser user = mFirebaseAuth.getCurrentUser();
                                 if(user.isEmailVerified()){ //그 계정이 실제로 존재하는 계정인지
                                     Log.d("login", "signInWithEmail:success" + user.getEmail());
-                                    Toast.makeText(MainActivity.this, "signInWithEmail:success." + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(MainActivity.this, "signInWithEmail:success." + user.getEmail(), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(MainActivity.this, choice_menu.class);
                                     startActivity(intent);
                                     finish(); // 현재 액티비티 파괴
