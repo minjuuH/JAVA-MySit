@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class UserInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +104,8 @@ public class UserInfoActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
 
+                signOut();
+
                 //엑티비티 하나를 제외하고 나머지 히스토리를 모두 지우는 코드
                 Intent i = new Intent(UserInfoActivity.this, MainActivity.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -109,5 +113,8 @@ public class UserInfoActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+    private void signOut() {
+        FirebaseAuth.getInstance().signOut();
     }
 }
