@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class time_booking_final extends AppCompatActivity {
+public class FinalTimeBooking extends AppCompatActivity {
 
     //두자리 서식 지정을 위한 함수 지정
     public String format(int n){
@@ -39,7 +39,7 @@ public class time_booking_final extends AppCompatActivity {
         //intet에서 받아온 값의 출력 서식 지정
         String dateText = Integer.toString(intent.getIntExtra("년", 0))+"-"+format(intent.getIntExtra("월", 0))
                 +"-"+format(intent.getIntExtra("일", 0));
-        String timeText = format(intent.getIntExtra("시",0))+":"+format(intent.getIntExtra("분",0));
+        String timeText = format(intent.getIntExtra("분",0));
 
         //추후 데이터 연결 작업 필요
         bn.setText("장소명");
@@ -54,7 +54,7 @@ public class time_booking_final extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "예약 완료되었습니다.", Toast.LENGTH_SHORT).show();
 
                 //엑티비티 하나를 제외하고 나머지 히스토리를 모두 지우는 코드
-                Intent i = new Intent(time_booking_final.this, choice_menu.class);
+                Intent i = new Intent(FinalTimeBooking.this, choice_menu.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(i);
             }
