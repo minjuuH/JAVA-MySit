@@ -114,6 +114,7 @@ public class UserInfoActivity extends AppCompatActivity {
             }
         });
     }
+
     private void signOut() {
         FirebaseAuth.getInstance().signOut();
     }
