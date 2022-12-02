@@ -3,6 +3,7 @@ package com.example.mysitreview;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +25,8 @@ public class SelectFreePost extends AppCompatActivity implements rvInterface {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
+
+        //SearchView serch1 = findViewById(R.id.search_view);
 
         findViewById(R.id.SelectButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -69,7 +72,7 @@ public class SelectFreePost extends AppCompatActivity implements rvInterface {
     @Override
     public void onItemClick(int position) {
         //rvInterface를 상속함으로서 구현해야할 onItemClick 이벤트
-        Intent intent = new Intent(SelectFreePost.this, ShowWritedPost.class);
+        Intent intent = new Intent(SelectFreePost.this, ShowFreeWritedPost.class);
 
         //다음 액티비티에 전달할 데이터 저장
         intent.putExtra("title", arrayList.get(position).getTitle());
