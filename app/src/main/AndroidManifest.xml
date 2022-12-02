@@ -28,7 +28,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".ResetPwdActivity"
             android:exported="false">
@@ -36,7 +35,13 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
+        <activity
+            android:name=".ShowFreeWritedPost"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".ShowWritedPost"
             android:exported="false">
@@ -44,7 +49,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".WritePostActivity"
             android:exported="false">
@@ -52,7 +56,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".WriteFreePostActivity"
             android:exported="false">
@@ -60,7 +63,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".SelectFreePost"
             android:exported="false">
@@ -68,7 +70,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".SelectPlace"
             android:exported="false">
@@ -76,7 +77,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".SubActivity"
             android:exported="false">
@@ -84,7 +84,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".make_reserv_post"
             android:exported="false">
@@ -92,7 +91,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".choice_menu"
             android:exported="false">
@@ -100,7 +98,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".register_menu"
             android:exported="false">
@@ -108,7 +105,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".RegisterComplete"
             android:exported="false">
@@ -116,7 +112,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".UserInfoActivity"
             android:exported="false">
@@ -124,7 +119,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".time_choice"
             android:exported="false">
@@ -132,7 +126,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".time_choice_plus"
             android:exported="false">
@@ -140,17 +133,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
-            android:name=".time_booking_final"
+            android:name=".FinalTimeBooking"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
-            android:name=".booking_final"
+            android:name=".FinalBooking"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
