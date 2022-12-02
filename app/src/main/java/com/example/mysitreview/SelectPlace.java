@@ -10,10 +10,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import android.widget.SearchView;
 import java.util.ArrayList;
 
-//import com.example.mysitreview.MyReCyclerAdapter;
 //리사이클러뷰 연습 코드
 //activity_select_place와 연계
 
@@ -28,7 +27,15 @@ public class SelectPlace extends AppCompatActivity implements rvInterface {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
+        //findViewById(R.id.search_view).setOnQueryTextListener(object : search_view.OnQueryTextListener{
 
+            //override fun onQueryTextChange(newText: String?): Boolean {
+
+                //검색어 입력 순간마다의 이벤트...
+
+             //   return true
+
+         //   }
         findViewById(R.id.SelectButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(SelectPlace.this, WritePostActivity.class));
