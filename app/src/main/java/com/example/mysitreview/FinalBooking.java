@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class booking_final extends AppCompatActivity {
+public class FinalBooking extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class booking_final extends AppCompatActivity {
         findViewById(R.id.booking_btn).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "예약 완료되었습니다.", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(booking_final.this, choice_menu.class));
+                startActivity(new Intent(FinalBooking.this, choice_menu.class));
             }
         });
     }
