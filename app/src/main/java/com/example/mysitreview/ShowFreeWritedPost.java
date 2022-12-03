@@ -18,7 +18,7 @@ public class ShowFreeWritedPost extends AppCompatActivity {
         String intro = getIntent().getStringExtra("introduce");
 
         TextView titleTextView = findViewById(R.id.titleEditText);
-        TextView introTextView = findViewById(R.id.introduce);
+        TextView introTextView = findViewById(R.id.tv_introduce);
 
         titleTextView.setText(title);
         introTextView.setText(intro);
