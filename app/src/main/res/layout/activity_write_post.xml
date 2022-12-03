@@ -32,7 +32,7 @@
                 android:minHeight="48dp" />
 
             <EditText
-                android:id="@+id/introduce"
+                android:id="@+id/tv_introduce"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -73,6 +73,7 @@
                 android:orientation="vertical">
 
                 <include
+                    android:id="@+id/contenttext"
                     layout="@layout/view_contents_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
