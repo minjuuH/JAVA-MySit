@@ -72,7 +72,7 @@ public class AdapterFreePost extends RecyclerView.Adapter<AdapterFreePost.Custom
 
             //super로 지정한 레이아웃의 구성 요소를 불러옴
             this.pic = (ImageView) itemView.findViewById(R.id.pic);
-            this.title = (TextView) itemView.findViewById(R.id.title);
+            this.title = (TextView) itemView.findViewById(R.id.tv_title);
             this.deadline = (TextView) itemView.findViewById(R.id.date);
             this.remain = (TextView) itemView.findViewById(R.id.remain);
 
