@@ -9,8 +9,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class FinalTimeBooking extends AppCompatActivity {
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+public class FinalTimeBooking extends AppCompatActivity {
+    private DatabaseReference mDatabaseRef; // 실시간 데이터베이스
     //두자리 서식 지정을 위한 함수 지정
     public String format(int n){
         if(n<10)
@@ -21,6 +24,7 @@ public class FinalTimeBooking extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_booking_final);
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("장소 글작성 정보");
 
         //이미지 출력
         ImageView imageView = findViewById(R.id.imageView);
