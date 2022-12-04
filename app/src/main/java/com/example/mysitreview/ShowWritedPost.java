@@ -48,7 +48,13 @@ public class ShowWritedPost extends AppCompatActivity {
 
         findViewById(R.id.btn_check).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(ShowWritedPost.this, time_choice_plus.class));
+                Intent intent = new Intent(ShowWritedPost.this, time_choice_plus.class);
+
+                //intent에 제목,상세정보 데이터 전달
+                intent.putExtra("title", title);
+                intent.putExtra("introduce", intro);
+
+                startActivity(intent);
             }
         });
     }

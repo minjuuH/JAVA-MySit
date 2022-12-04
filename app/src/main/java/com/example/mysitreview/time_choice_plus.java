@@ -74,6 +74,8 @@ public class time_choice_plus extends AppCompatActivity {
                     //time_booking_final로 값 전달
                     intent.putExtra("년", selectYear); intent.putExtra("월", selectMonth); intent.putExtra("일", selectDay);
                     intent.putExtra("분", items[position]);
+                    intent.putExtra("title", getIntent().getStringExtra("title"));
+                    intent.putExtra("introduce", getIntent().getStringExtra("introduce"));
 
                     //time_booking_final 시작
                     startActivity(intent);
