@@ -71,6 +71,8 @@ public class SelectPlace extends AppCompatActivity implements rvInterface {
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, linearLayoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
 
+        System.out.println("리스트 개수"+placeAdapter.getItemCount());
+
         // 글작성으로 이동
         findViewById(R.id.SelectButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
