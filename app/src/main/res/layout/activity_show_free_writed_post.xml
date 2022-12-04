@@ -26,7 +26,7 @@
                 android:paddingEnd="20dp"
                 android:paddingTop="20dp"
                 android:text="제목"
-                android:textSize="20sp"
+                android:textSize="25sp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/titleEditText" />
 
             <View
-                android:id="@+id/view"
+                android:id="@+id/view1"
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:background="@color/separator_gray"
@@ -57,76 +57,115 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_introduce" />
 
             <TextView
-                android:id="@+id/openTime2"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="31dp"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_background"
-                android:ems="20"
-                android:inputType="time"
-                android:minHeight="48dp"
-                android:padding="5dp"
-                android:text="최소 예약 인원"
-                app:layout_constraintBottom_toTopOf="@+id/tv_content"
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:text="예약기간"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_openTime" />
+                app:layout_constraintTop_toBottomOf="@+id/view1" />
 
-            <TextView
-                android:id="@+id/openTime3"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="49dp"
-                android:layout_marginEnd="31dp"
-                android:layout_marginBottom="8dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_background"
-                android:ems="20"
-                android:inputType="time"
-                android:minHeight="48dp"
-                android:padding="5dp"
-                android:text="최대 예약 인원"
-                app:layout_constraintBottom_toTopOf="@+id/tv_content"
+            <View
+                android:id="@+id/sparateView1"
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="7dp"
+                android:background="@color/separator_gray"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/openTime2"
-                app:layout_constraintTop_toBottomOf="@+id/tv_endTime" />
-
-            <TextView
-                android:id="@+id/tv_openTime"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="31dp"
-                android:layout_marginTop="6dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_background"
-                android:ems="20"
-                android:inputType="time"
-                android:minHeight="48dp"
-                android:padding="5dp"
-                android:text="영업시작 시간 : 00:00"
+                app:layout_constraintHorizontal_bias="0.3"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_introduce" />
 
             <TextView
-                android:id="@+id/tv_endTime"
-                android:layout_width="150dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="49dp"
+                android:id="@+id/now"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:text="모집현황"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+            <View
+                android:id="@+id/sparateView2"
+                android:layout_width="1dp"
+                android:layout_height="28dp"
                 android:layout_marginTop="6dp"
-                android:layout_marginEnd="31dp"
-                android:layout_marginBottom="18dp"
-                android:layout_weight="1"
-                android:background="@drawable/layout_background"
-                android:ems="10"
-                android:inputType="time"
-                android:minHeight="48dp"
-                android:padding="5dp"
-                android:text="영업종료 시간 : 00:00"
+                android:background="@color/separator_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sparateView1" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/separator_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/now" />
+
+            <TextView
+                android:id="@+id/nowcount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:text="n / m"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/tv_openTime"
+                app:layout_constraintTop_toBottomOf="@+id/tv_endTime" />
+
+            <TextView
+                android:id="@+id/tv_openTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:inputType="date"
+                android:text="2022-xx-xx"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/dash"
+                app:layout_constraintTop_toBottomOf="@+id/tv_introduce" />
+
+            <TextView
+                android:id="@+id/dash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:inputType="date"
+                android:text=" ~ "
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/tv_endTime"
+                app:layout_constraintTop_toBottomOf="@+id/tv_introduce" />
+
+            <TextView
+                android:id="@+id/tv_endTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="18dp"
+                android:layout_weight="1"
+                android:inputType="date"
+                android:text="2022-xx-xx"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_content"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_introduce"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -146,25 +185,48 @@
             <TextView
                 android:id="@+id/tv_content"
                 layout="@layout/view_contents_edit_text"
-                android:layout_width="409dp"
-                android:layout_height="101dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:padding="20dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/image"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
 
             <Button
                 android:id="@+id/btn_check"
                 android:layout_width="300dp"
                 android:layout_height="48dp"
-                android:layout_marginTop="10dp"
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/layout_background"
-                android:text="시간 선택으로 이동"
+                android:text="예약"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/mincount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="5dp"
+                android:background="@drawable/layout_background"
+                android:backgroundTint="@color/gray"
+                android:text="@string/precautions_min"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toTopOf="@+id/btn_check"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/image" />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
