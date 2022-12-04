@@ -1,4 +1,5 @@
 package com.example.mysitreview;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -12,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -66,20 +71,31 @@ public class WritePostActivity extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("장소 글작성 정보");
         // 확인 버튼
         findViewById(R.id.btn_check).setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                WritePostClass wp = new WritePostClass();
-                wp.setTitle(Title.getText().toString());
-                wp.setIntroduce(Introduce.getText().toString());
-                wp.setStarttime(Opentime.getText().toString());
-                wp.setEndtime(Endtime.getText().toString());
-                wp.setContent(Content.getText().toString());
-                mDatabaseRef.child(Title.getText().toString()).setValue(wp);
-                Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
+            public void onClick(View v){
+                String strtitle = Title.getText().toString();
+                String strintroduce = Introduce.getText().toString();
+                String stropentime = Opentime.getText().toString();
+                String strendtime = Endtime.getText().toString();
+                String strcontent = Content.getText().toString();
+                if(strtitle.length()>0&&strintroduce.length()>0&&stropentime.length()>0&&strendtime.length()>0&&strcontent.length()>0) {
+                    WritePostClass wp = new WritePostClass();
+                    wp.setTitle(strtitle);
+                    wp.setIntroduce(strintroduce);
+                    wp.setStarttime(stropentime);
+                    wp.setEndtime(strendtime);
+                    wp.setContent(strcontent);
+                    mDatabaseRef.child(strtitle).setValue(wp);
+                    Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
+
+                    startActivity(new Intent(WritePostActivity.this, SelectPlace.class));
+                    finish();
+                }else {
+                    Toast.makeText(WritePostActivity.this, "빈칸을 입력해주세요.",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
     }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
