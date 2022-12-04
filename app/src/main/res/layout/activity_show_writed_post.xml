@@ -57,7 +57,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_introduce" />
 
             <TextView
-                android:id="@+id/openTime"
+                android:id="@+id/tv_openTime"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="31dp"
@@ -73,7 +73,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_introduce" />
 
             <TextView
-                android:id="@+id/endTime"
+                android:id="@+id/tv_endTime"
                 android:layout_width="150dp"
                 android:layout_height="35dp"
                 android:layout_marginStart="49dp"
@@ -87,10 +87,10 @@
                 android:minHeight="48dp"
                 android:padding="5dp"
                 android:text="영업종료 시간 : 00:00"
-                app:layout_constraintBottom_toTopOf="@+id/textView8"
+                app:layout_constraintBottom_toTopOf="@+id/tv_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/openTime"
+                app:layout_constraintStart_toEndOf="@+id/tv_openTime"
                 app:layout_constraintTop_toBottomOf="@+id/tv_introduce"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -109,7 +109,7 @@
                 app:srcCompat="@mipmap/ic_launcher" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/tv_content"
                 layout="@layout/view_contents_edit_text"
                 android:layout_width="409dp"
                 android:layout_height="101dp"
@@ -118,11 +118,11 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/openTime"
+                app:layout_constraintTop_toBottomOf="@+id/tv_openTime"
                 app:layout_constraintVertical_bias="0.0" />
 
             <Button
-                android:id="@+id/check"
+                android:id="@+id/btn_check"
                 android:layout_width="300dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="10dp"
