@@ -19,4 +19,5 @@
     <string name="_14_00">14:00</string>
     <string name="_15_00">15:00</string>
     <string name="예약">예약</string>
+    <string name="precautions_min">※ 해당 예약은 예약인원이 n(명) 이상 모집될 경우 확정됩니다!</string>
 </resources>
