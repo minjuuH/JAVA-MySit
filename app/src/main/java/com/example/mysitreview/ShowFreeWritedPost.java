@@ -23,7 +23,7 @@ public class ShowFreeWritedPost extends AppCompatActivity {
         titleTextView.setText(title);
         introTextView.setText(intro);
 
-        findViewById(R.id.check).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_check).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 startActivity(new Intent(ShowFreeWritedPost.this, FinalBooking.class));
             }
