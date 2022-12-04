@@ -54,7 +54,7 @@ public class WriteFreePostActivity extends AppCompatActivity {
             }
         });
         // 확인 버튼
-        findViewById(R.id.check).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_check).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
             }

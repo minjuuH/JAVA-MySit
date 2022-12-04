@@ -60,12 +60,12 @@ public class WritePostActivity extends AppCompatActivity {
         });
         EditText Title = findViewById(R.id.titleEditText);
         EditText Introduce = findViewById(R.id.tv_introduce);
-        EditText Opentime = findViewById(R.id.openTime);
-        EditText Endtime = findViewById(R.id.endTime);
+        EditText Opentime = findViewById(R.id.tv_openTime);
+        EditText Endtime = findViewById(R.id.tv_endTime);
         EditText Content = findViewById(R.id.contenttext);
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("장소 글작성 정보");
         // 확인 버튼
-        findViewById(R.id.check).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_check).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 WritePostClass wp = new WritePostClass();
                 wp.setTitle(Title.getText().toString());
