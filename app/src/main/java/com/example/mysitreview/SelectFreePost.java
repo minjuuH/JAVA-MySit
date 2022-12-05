@@ -51,7 +51,6 @@ public class SelectFreePost extends AppCompatActivity implements rvInterface {
 
         arrayList = new ArrayList<>();
         mainAdapter = new AdapterFreePost(arrayList,this);
-        //mainAdapter = new AdapterFreePost(arrayList, this, this);
         recyclerView.setAdapter(mainAdapter);       //설정한 adapter를 recyclerView에 설정
 
 
