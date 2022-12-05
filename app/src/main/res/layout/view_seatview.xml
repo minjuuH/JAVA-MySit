@@ -30,7 +30,7 @@
             android:text="예약한 장소명" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/seatingDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/seatName"
