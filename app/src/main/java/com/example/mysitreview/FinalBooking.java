@@ -6,13 +6,31 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class FinalBooking extends AppCompatActivity {
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+public class FinalBooking extends AppCompatActivity {
+    DatabaseReference mDatabaseRef;
+
+    public String uid,title;
+
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_final);
+
+        Intent intent = getIntent();
+        uid = intent.getStringExtra("uid");
+        title = intent.getStringExtra("title");
+
 
         //추후 데이터 연결 작업 필요
         String name = "예약자";
@@ -29,13 +47,26 @@ public class FinalBooking extends AppCompatActivity {
         TextView ct = (TextView)findViewById(R.id.counttext);
         TextView rv = (TextView)findViewById(R.id.remainView);
 
-        //추후 데이터 연결 작업 필요
-        bn.setText("예약 이름");
-        bi.setText("예약 상세 정보");
-        nt.setText(name);
-        pt.setText(phoneNum);
-        dt.setText(date);
-        ct.setText(Integer.toString(real)+"/"+Integer.toString(full));
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("book");
+        mDatabaseRef.child(uid).child(title).addValueEventListener((new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Board_Book bb = snapshot.getValue(Board_Book.class);
+                bn.setText(title);
+                bi.setText(bb.getContent());
+                nt.setText(bb.getName());
+                pt.setText(bb.getPhNum());
+                dt.setText(bb.getDate());
+                ct.setText(bb.getDtime());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        }));
+
         rv.setText("잔여 : "+Integer.toString(full-real));
 
         findViewById(R.id.booking_btn).setOnClickListener(new View.OnClickListener() {
