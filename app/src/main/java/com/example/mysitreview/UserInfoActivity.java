@@ -1,6 +1,8 @@
 package com.example.mysitreview;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +15,14 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class UserInfoActivity extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class UserInfoActivity extends AppCompatActivity implements rvInterface {
+    private ArrayList<UserSeatData> arrayList;
+    private UserSeatAdapter mainAdapter;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager linearLayoutManager;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_info);
@@ -100,6 +109,31 @@ public class UserInfoActivity extends AppCompatActivity {
             }
         });
 
+
+        //예약내역 확인
+        recyclerView = (RecyclerView) findViewById(R.id.seatingRecycle);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
+        //Divider 추가
+        //DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(this, linearLayoutManager.getOrientation());
+        //recyclerView.addItemDecoration(dividerItemDecoration);
+
+        arrayList = new ArrayList<>();
+        mainAdapter = new UserSeatAdapter(arrayList, this);
+        recyclerView.setAdapter(mainAdapter);       //설정한 adapter를 recyclerView에 설정
+
+        for(int i=0;i<5;i++){
+            UserSeatData mainData = new UserSeatData("title"+Integer.toString(i), "2022-xx-xx");
+            arrayList.add(mainData);
+            mainAdapter.notifyDataSetChanged();
+        }
+
+        //추후에 예외처리해야할 부분 -> 예약내역이 없을 경우 보이게, 예약내역이 있을 경우 보이지 않게
+        findViewById(R.id.emptyBooking).setVisibility(View.GONE);
+        findViewById(R.id.emptyBooking).setEnabled(false);
+
+
         findViewById(R.id.logoutBtn).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
@@ -117,5 +151,17 @@ public class UserInfoActivity extends AppCompatActivity {
 
     private void signOut() {
         FirebaseAuth.getInstance().signOut();
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        //리사이클러 아이템클릭리스너
+
+        //예약 종류에 따라 다른 액티비티로 전환(자유->UserSeatingInfo_free / 장소->UserSeatingInfo_place)
+        Intent intent = new Intent(UserInfoActivity.this, UserSeatingInfo_free.class);
+        intent.putExtra("title", arrayList.get(position).getTitle());
+        intent.putExtra("sdate", arrayList.get(position).getSdate());
+
+        startActivity(intent);
     }
 }
