@@ -1,5 +1,6 @@
 package com.example.mysitreview;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -7,25 +8,57 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class ShowFreeWritedPost extends AppCompatActivity {
+    DatabaseReference mDatabaseRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_free_writed_post);
 
+        Intent intent = new Intent();
         String title = getIntent().getStringExtra("title");
-        String intro = getIntent().getStringExtra("introduce");
 
-        TextView titleTextView = findViewById(R.id.titleEditText);
-        TextView introTextView = findViewById(R.id.tv_introduce);
+        TextView titletv = findViewById(R.id.titleEditText);
+        TextView contenttv = findViewById(R.id.tv_introduce);
+        TextView max_popultv = findViewById(R.id.nowcount);
+        TextView stimetv = findViewById(R.id.tv_openTime);
+        TextView etimetv = findViewById(R.id.tv_endTime);
 
-        titleTextView.setText(title);
-        introTextView.setText(intro);
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("board");
+        mDatabaseRef.child(title).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Board_Show bs = snapshot.getValue(Board_Show.class);
+                contenttv.setText(bs.getContent());
+                max_popultv.setText("최대인원 : "+bs.getMax_popul());
+                stimetv.setText(bs.getStime());
+                etimetv.setText(bs.getEtime());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        titletv.setText(title);
+
+
+
 
         findViewById(R.id.btn_check).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(ShowFreeWritedPost.this, FinalBooking.class));
+                Intent intent = new Intent(ShowFreeWritedPost.this, time_choice_free.class);
+
+                intent.putExtra("title", title);
+
+                startActivity(intent);
             }
         });
     }
