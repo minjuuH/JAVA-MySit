@@ -3,6 +3,7 @@ package com.example.mysitreview;
 public class User {
     public String name;
     public String firstLunch;
+    public String phNum;
 
     public User(){
 
@@ -28,4 +29,8 @@ public class User {
     public void setFirstLunch(String firstLunch) {
         this.firstLunch = firstLunch;
     }
+
+    public String GetPhNum(){return phNum;}
+
+    public void setPhNum(String phNum){this.phNum = phNum;}
 }
