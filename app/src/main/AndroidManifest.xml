@@ -36,6 +36,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".time_choice_free"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ShowFreeWritedPost"
             android:exported="false">
             <meta-data
