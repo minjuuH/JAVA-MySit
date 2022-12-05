@@ -35,7 +35,9 @@ public class AdapterFreePost extends RecyclerView.Adapter<AdapterFreePost.PlaceV
         BoardAdapt ba = arrayList.get(position);
         //holder.pic.setImageResource(arrayList.get(position).getPic());
         holder.title.setText(ba.getTitle());
-        holder.deadline.setText(ba.getEtime());
+        holder.intro.setText(ba.getIntro());
+        String dldate = ba.getStime()+" - "+ba.getEtime();
+        holder.deadline.setText(dldate);
         holder.remain.setText(ba.getMax_popul());
 
         //클릭 이벤트 구현?
@@ -65,6 +67,7 @@ public class AdapterFreePost extends RecyclerView.Adapter<AdapterFreePost.PlaceV
         //recyclerview의 item 레이아웃의 구성 요소를 담을 참조 선언
         //protected ImageView pic;
         protected TextView title;
+        protected TextView intro;
         protected TextView deadline;
         protected TextView remain;
 
@@ -74,6 +77,7 @@ public class AdapterFreePost extends RecyclerView.Adapter<AdapterFreePost.PlaceV
             //super로 지정한 레이아웃의 구성 요소를 불러옴
             // this.pic = (ImageView) itemView.findViewById(R.id.pic);
             this.title = (TextView) itemView.findViewById(R.id.tv_title);
+            this.intro = (TextView) itemView.findViewById(R.id.tv_introduce);
             this.deadline = (TextView) itemView.findViewById(R.id.date);
             this.remain = (TextView) itemView.findViewById(R.id.remain);
 
