@@ -55,36 +55,39 @@ public class time_choice_plus extends AppCompatActivity {
             selectDay = dayOfMonth;
         });
 
+
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @SuppressLint("SetTextI18n")
             @Override
-            public void onItemSelected(AdapterView < ? > parent, View view, int position, long id){
+            public void onItemSelected(AdapterView < ? > parent, View view, int position, long id) {
 
                 if (selectYear == 0)
                 {
-                    btnEnd.setOnClickListener(v -> tvResult.setText("날짜를 선택해야 예약이 가능합니다."));
+                    btnEnd.setOnClickListener(v -> tvResult.setText("날짜와 시간을 선택해야 예약이 가능합니다."));
                 }
 
                 else {
-                    btnEnd.setOnClickListener(v -> tvResult.setText(selectYear + "년" + selectMonth + "월" + selectDay + "일 " + items[position] + "에 예약되었습니다."));
+                    String s = (String) parent.getItemAtPosition(position);
+                    btnEnd.setOnClickListener(v -> {
+                        tvResult.setText(selectYear + "년" + selectMonth + "월" + selectDay + "일 " + s + "에 예약되었습니다.");
 
-                    //값을 전달하기 위한 intent 생성
-                    Intent intent = new Intent(time_choice_plus.this, FinalTimeBooking.class);
+                        //값을 전달하기 위한 intent 생성
+                Intent intent = new Intent(time_choice_plus.this, FinalTimeBooking.class);
 
-                    //time_booking_final로 값 전달
-                    intent.putExtra("년", selectYear); intent.putExtra("월", selectMonth); intent.putExtra("일", selectDay);
-                    intent.putExtra("분", items[position]);
-                    intent.putExtra("title", getIntent().getStringExtra("title"));
-                    intent.putExtra("introduce", getIntent().getStringExtra("introduce"));
+                //time_booking_final로 값 전달
+                intent.putExtra("년", selectYear); intent.putExtra("월", selectMonth); intent.putExtra("일", selectDay);
+                intent.putExtra("분", s);
+                intent.putExtra("title", getIntent().getStringExtra("title"));
+                intent.putExtra("introduce", getIntent().getStringExtra("introduce"));
 
-                    //time_booking_final 시작
-                    startActivity(intent);
-                }
-            }
+                //time_booking_final 시작
+                startActivity(intent);
+        });
+                }}
 
             @Override
             public void onNothingSelected (AdapterView < ? > parent){
-                btnEnd.setOnClickListener(v -> tvResult.setText("시간을 선택해야 예약이 가능합니다."));
+                btnEnd.setOnClickListener(v -> tvResult.setText("날짜와 시간을 선택해야 예약이 가능합니다."));
             }});
     }
 }
