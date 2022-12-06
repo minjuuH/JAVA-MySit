@@ -37,13 +37,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".UserSeatingInfo_place"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".ResetPwdActivity"
             android:exported="false">
             <meta-data
@@ -164,6 +157,13 @@
         </activity>
         <activity
             android:name=".FinalBooking"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Choice_Day_From_WriteFreePost"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
