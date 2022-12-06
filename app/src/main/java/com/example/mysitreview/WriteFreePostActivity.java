@@ -102,6 +102,18 @@ public class WriteFreePostActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
+        findViewById(R.id.StartDay).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "시작 날을 선택합니다.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(WriteFreePostActivity.this, Choice_Day_From_WriteFreePost.class));
+            }
+        });
+        findViewById(R.id.EndDay).setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "시작 날을 선택합니다.", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(WriteFreePostActivity.this, Choice_Day_From_WriteFreePost.class));
+            }
+        });
 
 
 
