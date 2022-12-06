@@ -65,7 +65,7 @@ public class FinalTimeBooking extends AppCompatActivity {
         //intet에서 받아온 값의 출력 서식 지정
         String dateText = Integer.toString(intent.getIntExtra("년", 0))+"-"+format(intent.getIntExtra("월", 0))
                 +"-"+format(intent.getIntExtra("일", 0));
-        String timeText = format(intent.getIntExtra("분",0));
+        String timeText = (intent.getStringExtra("분"));
         
         bn.setText(intent.getStringExtra("title"));
         bi.setText(intent.getStringExtra("introduce"));
