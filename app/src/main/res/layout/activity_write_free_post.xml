@@ -45,6 +45,27 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/StartDay"
+                    style="@style/Widget.AppCompat.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="시작날짜 선택" />
+
+                <Button
+                    android:id="@+id/EndDay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="종료날짜 선택" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
                 <EditText
                     android:id="@+id/numOfpeople"
                     android:layout_width="197dp"
@@ -98,6 +119,13 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
                 <include
                     layout="@layout/view_contents_edit_text"
                     android:layout_width="match_parent"
@@ -128,13 +156,11 @@
 
                 </LinearLayout>
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_centerHorizontal="true">
+                    android:layout_height="match_parent">
 
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
 
@@ -156,67 +182,10 @@
                 android:id="@+id/btn_check"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="button_board_register"
                 android:text="확인" />
 
         </LinearLayout>
 
     </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/buttonsBackgroundLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#91646464"
-        android:visibility="gone">
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:elevation="10dp"
-            app:cardCornerRadius="15dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="5dp">
-
-            <Button
-                android:id="@+id/imageModify"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="이미지 수정" />
-
-            <Button
-                android:id="@+id/videoModify"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="비디오 수정" />
-
-            <Button
-                android:id="@+id/delete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="삭제" />
-        </LinearLayout>
-
-
-
-    </RelativeLayout>
-
-    <include
-        layout="@layout/view_loader"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"/>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
