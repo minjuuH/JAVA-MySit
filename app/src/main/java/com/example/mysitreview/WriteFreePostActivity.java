@@ -72,6 +72,14 @@ public class WriteFreePostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_free_post);
+        String StartDay = getIntent().getStringExtra("StartDate");
+        String EndDay = getIntent().getStringExtra("EndDate");;
+        EditText editText1 = findViewById(R.id.StartDay);
+        EditText editText2 = findViewById(R.id.EndDay);
+        editText1.setText(StartDay);
+        editText2.setText(EndDay);
+        StartDay = getIntent().getStringExtra("StartDate");
+        EndDay = getIntent().getStringExtra("EndDate");;
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -102,7 +110,7 @@ public class WriteFreePostActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
-        findViewById(R.id.StartDay).setOnClickListener(new View.OnClickListener() {
+       /* findViewById(R.id.StartDay).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "시작 날을 선택합니다.", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(WriteFreePostActivity.this, Choice_Day_From_WriteFreePost.class));
@@ -113,7 +121,8 @@ public class WriteFreePostActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "시작 날을 선택합니다.", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(WriteFreePostActivity.this, Choice_Day_From_WriteFreePost.class));
             }
-        });
+        });*/
+
 
 
 
