@@ -39,7 +39,7 @@ public class SelectFreePost extends AppCompatActivity implements rvInterface {
 
         findViewById(R.id.SelectButton).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                startActivity(new Intent(SelectFreePost.this, WriteFreePostActivity.class));
+                startActivity(new Intent(SelectFreePost.this, Choice_Day_From_WriteFreePost.class));
             }
         });
 
