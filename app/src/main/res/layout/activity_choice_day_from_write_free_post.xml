@@ -8,39 +8,67 @@
     tools:context=".Choice_Day_From_WriteFreePost">
 
 
-    <CalendarView
-        android:id="@+id/calendar"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:focusedMonthDateColor="#000000"
-        android:selectedWeekBackgroundColor="#ffffff"
-        android:unfocusedMonthDateColor="#CFCACA"
+        android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></CalendarView>
+        tools:layout_editor_absoluteY="0dp">
 
-    <TextView
-        android:id="@+id/TVchdate"
-        android:layout_width="match_parent"
-        android:layout_height="78dp"
-        android:text="선택한 날짜"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendar" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/button7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="154dp"
-        android:layout_marginTop="98dp"
-        android:layout_marginEnd="163dp"
-        android:layout_marginBottom="169dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TVchdate" />
+            <TextView
+                android:id="@+id/TVchdate"
+                android:layout_width="414dp"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="선택한 시작 날짜" />
+
+            <CalendarView
+                android:id="@+id/calendar"
+                android:layout_width="404dp"
+                android:layout_height="289dp"
+                android:layout_weight="5"
+                android:focusedMonthDateColor="#000000"
+                android:selectedWeekBackgroundColor="#ffffff"
+                android:unfocusedMonthDateColor="#CFCACA"></CalendarView>
+
+            <TextView
+                android:id="@+id/TVchdate2"
+                android:layout_width="414dp"
+                android:layout_height="32dp"
+                android:gravity="center_horizontal"
+                android:text="선택한 시작 날짜" />
+
+            <CalendarView
+                android:id="@+id/calendar2"
+                android:layout_width="410dp"
+                android:layout_height="295dp"
+                android:layout_weight="5"
+                android:focusedMonthDateColor="#000000"
+                android:selectedWeekBackgroundColor="#ffffff"
+                android:unfocusedMonthDateColor="#CFCACA"></CalendarView>
+
+            <Button
+                android:id="@+id/button7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="150dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="150dp"
+                android:layout_marginRight="150dp"
+                android:text="선택 완료"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/calendar2" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
