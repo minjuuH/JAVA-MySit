@@ -45,15 +45,14 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <Button
+                <EditText
                     android:id="@+id/StartDay"
-                    style="@style/Widget.AppCompat.Button.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="시작날짜 선택" />
 
-                <Button
+                <EditText
                     android:id="@+id/EndDay"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
