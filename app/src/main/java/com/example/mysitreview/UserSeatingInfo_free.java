@@ -50,9 +50,11 @@ public class UserSeatingInfo_free extends AppCompatActivity {
         TextView reserv = (TextView)findViewById(R.id.date);
         TextView start = (TextView)findViewById(R.id.time);
 
+        rv.setVisibility(View.GONE);
+        rv.setEnabled(false);
+
         type2 = "자유";
         String type3 = "장소";
-
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("book");
         mDatabaseRef.child(uid).child(title).addListenerForSingleValueEvent((new ValueEventListener() {
@@ -68,10 +70,10 @@ public class UserSeatingInfo_free extends AppCompatActivity {
                     bi.setText(bb.getContent());
                     nt.setText(bb.getName());
                     pt.setText(bb.getPhNum());
-                    dt.setText(bb.getDate() + " ~ " + bb.getEtime());
-                    ct.setText(bb.getRtime() + "  " + bb.getDtime());
+                    dt.setText(" ~ " + bb.getEtime());
+                    ct.setText(bb.getDate() + "  " + bb.getDtime());
                     reserv.setText("모집기간");
-                    start.setText(title + "시작");
+                    start.setText(title + " 시작");
                 }
                 else if (type.equals(type3)){
                     bi.setText(bb.getContent());
