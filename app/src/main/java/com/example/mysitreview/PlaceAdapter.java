@@ -7,54 +7,79 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.Placeholder;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHolder> {
-    private ArrayList<DataPlace> list;
-    private Context context;
-    private rvInterface rvInterface;
+    private ArrayList<BoardAdapt> arrayList;
+    private final rvInterface rvInterface;
 
-    // 생성자로 데이터를 전달받도록함   *
-    public PlaceAdapter(ArrayList<DataPlace> list, Context context, rvInterface rvInterface) {
-        this.list = list;
-        this.context = context;
+    //Construct
+    public PlaceAdapter(ArrayList<BoardAdapt> arrayList, rvInterface rvInterface) {
+        this.arrayList = arrayList;
         this.rvInterface = rvInterface;
     }
 
-    // ViewHolder 객체를 생성하여 리턴한다.
     @NonNull
     @Override
     public PlaceAdapter.PlaceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_placeselect, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
         PlaceViewHolder holder = new PlaceViewHolder(view, rvInterface);
-
         return holder;
     }
-    //  ViewHolder 안의 내용을 position에 해당하는 데이터로 교체한다.
-    @Override
-    public void onBindViewHolder(@NonNull PlaceViewHolder holder, int position) {
-        DataPlace dp = list.get(position);
-        holder.title.setText(dp.getTitle());
-        holder.introduce.setText(dp.getIntroduce());
 
+    @Override
+    public void onBindViewHolder(@NonNull PlaceAdapter.PlaceViewHolder holder, int position) {
+        //arrayList의 요소를 item 레이아웃의 객체에 지정
+        BoardAdapt ba = arrayList.get(position);
+        //holder.pic.setImageResource(arrayList.get(position).getPic());
+        holder.title.setText(ba.getTitle());
+        holder.introduce.setText(ba.getIntroduce());
+
+        holder.deadline.setText("");
+        holder.remain.setText("");
+
+        //클릭 이벤트 구현?
+        //holder.itemView.setTag(position);
+        //holder.itemView.setOnClickListener(new View.OnClickListener() {
+        //@Override
+        //public void onClick(View view) {
+        //String curName = holder.title.getText().toString();
+        //Toast.makeText(view.getContext(), curName, Toast.LENGTH_SHORT).show();
+        //}
+        //});
+
+        /*holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                return true;
+            }
+        });*/
     }
-    // 전체 데이터의 갯수를 리턴한다.
+
     @Override
     public int getItemCount() {
-        return list.size();
+        return arrayList.size();
     }
 
-    // 각 뷰를 보관하는 객체
     public static class PlaceViewHolder extends RecyclerView.ViewHolder {
-        TextView title;
-        TextView introduce;
+        //recyclerview의 item 레이아웃의 구성 요소를 담을 참조 선언
+        //protected ImageView pic;
+        protected TextView title;
+        protected TextView introduce;
+        protected TextView deadline;
+        protected TextView remain;
+
         public PlaceViewHolder(@NonNull View itemView, rvInterface rvInterface) {
-            super(itemView);
-            title = itemView.findViewById(R.id.tv_title);
-            introduce = itemView.findViewById(R.id.tv_introduce);
+            super(itemView);    //참조할 item 레이아웃
+
+            //super로 지정한 레이아웃의 구성 요소를 불러옴
+            // this.pic = (ImageView) itemView.findViewById(R.id.pic);
+            this.title = (TextView) itemView.findViewById(R.id.tv_title);
+            this.introduce = (TextView) itemView.findViewById(R.id.tv_introduce);
+            this.deadline = (TextView) itemView.findViewById(R.id.date);
+            this.remain = (TextView) itemView.findViewById(R.id.remain);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -70,5 +95,4 @@ public class PlaceAdapter extends RecyclerView.Adapter<PlaceAdapter.PlaceViewHol
             });
         }
     }
-
 }

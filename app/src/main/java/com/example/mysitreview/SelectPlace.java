@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class SelectPlace extends AppCompatActivity implements rvInterface {
 
     private ArrayList<BoardAdapt> arrayList;
-    private AdapterFreePost mainAdapter;
+    private PlaceAdapter mainAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
     private DatabaseReference mDatabaseRef;
@@ -49,7 +49,7 @@ public class SelectPlace extends AppCompatActivity implements rvInterface {
 
 
         arrayList = new ArrayList<>();
-        mainAdapter = new AdapterFreePost(arrayList,this);
+        mainAdapter = new PlaceAdapter(arrayList,this);
         recyclerView.setAdapter(mainAdapter);       //설정한 adapter를 recyclerView에 설정
 
 
