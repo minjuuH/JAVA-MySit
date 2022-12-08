@@ -57,22 +57,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="종료날짜 선택" />
+                    android:text="종료날짜 선택"
+                    tools:ignore="TouchTargetSizeCheck" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
-
-                <EditText
-                    android:id="@+id/numOfpeople"
-                    android:layout_width="197dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:hint="최소 인원 수 : "
-                    android:inputType="number"
-                    android:minHeight="48dp" />
 
                 <EditText
                     android:id="@+id/numOfpeople2"
@@ -84,6 +76,16 @@
                     android:inputType="number"
                     android:minHeight="48dp" />
 
+                <EditText
+                    android:id="@+id/tv_openTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="이벤트시작 시간 : 00:00"
+                    android:inputType="time"
+                    android:minHeight="48dp" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -91,25 +93,6 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal" >
 
-                <EditText
-                    android:id="@+id/tv_openTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="영업시작 시간 : 00:00"
-                    android:inputType="time"
-                    android:minHeight="48dp" />
-
-                <EditText
-                    android:id="@+id/tv_endTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:hint="영업종료 시간 : 00:00"
-                    android:inputType="time"
-                    android:minHeight="48dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -179,6 +162,7 @@
 
             <Button
                 android:id="@+id/btn_check"
+                android:onClick="button_board_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="확인" />

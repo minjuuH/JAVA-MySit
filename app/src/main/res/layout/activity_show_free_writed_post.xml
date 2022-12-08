@@ -72,10 +72,10 @@
                 android:id="@+id/sparateView1"
                 android:layout_width="1dp"
                 android:layout_height="28dp"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="4dp"
                 android:background="@color/separator_gray"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintHorizontal_bias="0.36"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_introduce" />
 
@@ -91,18 +91,44 @@
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_content"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                app:layout_constraintTop_toBottomOf="@+id/textView6"
+                app:layout_constraintVertical_bias="0.095" />
 
             <View
                 android:id="@+id/sparateView2"
                 android:layout_width="1dp"
                 android:layout_height="28dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="12dp"
                 android:background="@color/separator_gray"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintHorizontal_bias="0.36"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/sparateView1" />
+
+            <View
+                android:id="@+id/sparateView3"
+                android:layout_width="1dp"
+                android:layout_height="28dp"
+                android:layout_marginTop="12dp"
+                android:background="@color/separator_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.36"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sparateView2" />
+
+            <TextView
+                android:id="@+id/eventstartview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="8dp"
+                android:text="시작날짜 및 시간"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sparateView2" />
 
             <View
                 android:id="@+id/view2"
@@ -112,21 +138,39 @@
                 android:background="@color/separator_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/now" />
+                app:layout_constraintTop_toBottomOf="@+id/eventstartview" />
 
             <TextView
                 android:id="@+id/nowcount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="53dp"
+                android:layout_height="21dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="8dp"
                 android:text="n / m"
+                android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/tv_content"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_endTime" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_endTime"
+                app:layout_constraintVertical_bias="0.116" />
+
+            <TextView
+                android:id="@+id/datetime"
+                android:layout_width="147dp"
+                android:layout_height="21dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:text="0000.00.00   00:00"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tv_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nowcount"
+                app:layout_constraintVertical_bias="0.255" />
 
             <TextView
                 android:id="@+id/tv_openTime"
@@ -171,8 +215,8 @@
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="285dp"
-                android:layout_height="333dp"
+                android:layout_width="290dp"
+                android:layout_height="283dp"
                 android:layout_marginStart="63dp"
                 android:layout_marginEnd="63dp"
                 android:scaleType="center"
