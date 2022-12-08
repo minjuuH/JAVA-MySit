@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 public class FinalBooking extends AppCompatActivity {
     DatabaseReference mDatabaseRef;
 
-    public String uid,title;
+    public String uid,title, now, max;
 
 
 
@@ -30,13 +30,13 @@ public class FinalBooking extends AppCompatActivity {
         Intent intent = getIntent();
         uid = intent.getStringExtra("uid");
         title = intent.getStringExtra("title");
-
+        now = intent.getStringExtra("now"); max = intent.getStringExtra("max");
 
         //추후 데이터 연결 작업 필요
         String name = "예약자";
         String phoneNum = "010-xxxx-xxxx";
         String date = "20xx.xx.xx - 20xx.xx.xx";
-        int full = 50; int real = 7;
+        //int full = Integer.parseInt(max); int real = Integer.parseInt(now);
 
         //텍스트필드 객체 받아옴
         TextView bn = (TextView)findViewById(R.id.bookingname);
@@ -60,8 +60,8 @@ public class FinalBooking extends AppCompatActivity {
                 bi.setText(bb.getContent());
                 nt.setText(bb.getName());
                 pt.setText(bb.getPhNum());
-                dt.setText(bb.getDate()+" ~ "+bb.getEtime());
-                ct.setText(bb.getRtime() + "  "+bb.getDtime());
+                dt.setText(" ~ "+bb.getEtime());
+                ct.setText(bb.getDate() + "  "+bb.getDtime());
                 reserv.setText("모집기간");
                 start.setText(title+" 시작");
 
@@ -73,7 +73,9 @@ public class FinalBooking extends AppCompatActivity {
             }
         }));
 
-        rv.setText("잔여 : "+Integer.toString(full-real));
+        //rv.setText("잔여 : "+Integer.toString(full-real));
+        rv.setVisibility(View.GONE);
+        rv.setEnabled(false);
 
         findViewById(R.id.booking_btn).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

@@ -5,13 +5,12 @@ public class Board_Book {
     private String  content;
     private String  name;
     private String  phNum;
-    private String  rtime;
-    private String  dtime;
-    private String  date;
+    private String  rtime;      //예약확정일자 및 시간
+    private String  dtime;      //이벤트 시작시간
+    private String  date;       //이벤트 시작일
     private String  uid;
     private String  type;
-    private String  etime;
-
+    private String  etime;      //모집 마감일
 
 
 

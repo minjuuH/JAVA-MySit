@@ -196,12 +196,10 @@ public class ShowFreeWritedPost extends AppCompatActivity {
                 //값을 전달하기 위한 intent 생성
                 Intent intent = new Intent(ShowFreeWritedPost.this, FinalBooking.class);
 
-
-
-
                 intent.putExtra("uid", uid);
-                intent.putExtra("title",title);
-
+                intent.putExtra("title", title);
+                intent.putExtra("now", now);
+                intent.putExtra("max", max);
 
                 //time_booking_final 시작
                 startActivity(intent);
