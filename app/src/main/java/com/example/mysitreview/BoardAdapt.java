@@ -6,6 +6,7 @@ public class BoardAdapt {
     private String stime;
     private String etime;
     private String max_popul;
+    private String introduce;
 
     public String getTitle() {
         return title;
@@ -39,6 +40,11 @@ public class BoardAdapt {
     public void setEtime(String etime) {this.etime = etime;}
 
 
-
+    public String getIntroduce() {
+        return introduce;
+    }
+    public void setIntroduce(String introduce) {
+        this.introduce = introduce;
+    }
 
 }

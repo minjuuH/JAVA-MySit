@@ -8,12 +8,15 @@ public class Board {
     public String date;
     public String order_date;
     public String intro;
-    public String min_Popul;
+    public String sdate;
     public String max_popul;
     public String stime;
     public String etime;
     public int pic;
     public String name;
+    public String now_popul;
+    private String type;
+
 
     public String getTitle() {
         return title;
@@ -33,11 +36,11 @@ public class Board {
     }
 
 
-    public String getMin_Popul() {
-        return min_Popul;
+    public String getSdate() {
+        return sdate;
     }
 
-    public void setMin_Popul(String min_Popul) {this.min_Popul = min_Popul;}
+    public void setSdate(String sdate) {this.sdate = sdate;}
 
 
     public String getMax_popul() {
@@ -108,7 +111,14 @@ public class Board {
 
     public void setName(String name){ this.name = name;}
 
+    public String getType(){return type;}
+
+    public void setType(String type){ this.type = type;}
+
+
+    public String getNow_popul(){return now_popul;}
+
+    public void setNow_popul(String now_popul){ this.now_popul = now_popul;}
 
 
 }
-

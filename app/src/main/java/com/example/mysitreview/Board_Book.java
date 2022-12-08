@@ -9,9 +9,10 @@ public class Board_Book {
     private String  dtime;
     private String  date;
     private String  uid;
+    private String  type;
+    private String  etime;
 
-    public Board_Book() {
-    }
+
 
 
     public String getTitle() {
@@ -83,5 +84,17 @@ public class Board_Book {
     public void setDate(String date) {
         this.date = date;
     }
+
+
+    public String getType(){return type;}
+
+    public void setType(String type){ this.type = type;}
+
+
+    public String getEtime() {
+        return etime;
+    }
+
+    public void setEtime(String etime) {this.etime = etime;}
 
 }
