@@ -192,7 +192,7 @@ public class ShowFreeWritedPost extends AppCompatActivity {
 
 
 
-                Toast.makeText(getApplicationContext(), date +  dtime + "에 시작하는 "+ title +"에예약되었습니다.", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), date +  dtime + "에 시작하는 "+ title +"에예약되었습니다.", Toast.LENGTH_SHORT).show();
                 //값을 전달하기 위한 intent 생성
                 Intent intent = new Intent(ShowFreeWritedPost.this, FinalBooking.class);
 
