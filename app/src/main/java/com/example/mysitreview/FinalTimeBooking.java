@@ -19,23 +19,27 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class FinalTimeBooking extends AppCompatActivity {
-    private DatabaseReference mDatabaseRefUser; // 실시간 데이터베이스
-    private DatabaseReference mDatabaseRefPlace; // 실시간 데이터베이스
-    private FirebaseAuth mFirebaseAuth;     // 파이어베이스 인증
-    //두자리 서식 지정을 위한 함수 지정
-    public String format(int n){
-        if(n<10)
-            return "0"+Integer.toString(n);
-        return Integer.toString(n);
-    }
+    DatabaseReference mDatabaseRef;
 
+    public String uid,title;
+
+
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_booking_final);
 
-        //이미지 출력
-        ImageView imageView = findViewById(R.id.imageView);
-        imageView.setImageResource(R.mipmap.ic_launcher);
+        Intent intent = getIntent();
+        uid = intent.getStringExtra("uid");
+        title = intent.getStringExtra("title");
+
+
+        //추후 데이터 연결 작업 필요
+        String name = "예약자";
+        String phoneNum = "010-xxxx-xxxx";
+        String date = "20xx.xx.xx - 20xx.xx.xx";
+        int full = 50; int real = 7;
 
         //텍스트필드 객체 받아옴
         TextView bn = (TextView)findViewById(R.id.bookingname);
@@ -43,54 +47,40 @@ public class FinalTimeBooking extends AppCompatActivity {
         TextView nt = (TextView)findViewById(R.id.nametext);
         TextView pt = (TextView)findViewById(R.id.phonetext);
         TextView dt = (TextView)findViewById(R.id.datetext);
-        TextView tt = (TextView)findViewById(R.id.timetext);
+        TextView ct = (TextView)findViewById(R.id.timetext);
+        TextView Dday = (TextView)findViewById(R.id.date);
+        TextView time = (TextView)findViewById(R.id.time);
 
-        mFirebaseAuth = FirebaseAuth.getInstance();
-        mDatabaseRefUser = FirebaseDatabase.getInstance().getReference("myseat");
-        mDatabaseRefPlace = FirebaseDatabase.getInstance().getReference("장소 글작성 정보");
-        FirebaseUser User = mFirebaseAuth.getCurrentUser(); // 회원가입된 유저 가져옴
-        mDatabaseRefUser.child("UserAccount").child(User.getUid()).addValueEventListener(new ValueEventListener() {
+
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("book");
+        mDatabaseRef.child(uid).child(title).addListenerForSingleValueEvent((new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                FinalPlaceReservation fpr = snapshot.getValue(FinalPlaceReservation.class);
-                nt.setText(fpr.getName());
-                pt.setText(fpr.getPhNum());
+                Board_Book bb = snapshot.getValue(Board_Book.class);
+                bn.setText(title);
+                bi.setText(bb.getContent());
+                nt.setText(bb.getName());
+                pt.setText(bb.getPhNum());
+                dt.setText(bb.getDate());
+                ct.setText(bb.getDtime());
+                Dday.setText("예약날짜");
+                time.setText("예약시간");
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
 
-        Intent intent = getIntent();
-        //intet에서 받아온 값의 출력 서식 지정
-        String dateText = Integer.toString(intent.getIntExtra("년", 0))+"-"+format(intent.getIntExtra("월", 0))
-                +"-"+format(intent.getIntExtra("일", 0));
-        String timeText = (intent.getStringExtra("분"));
-        
-        bn.setText(intent.getStringExtra("title"));
-        bi.setText(intent.getStringExtra("introduce"));
-        dt.setText(dateText);
-        tt.setText(timeText);
+            }
+        }));
+
+
 
         findViewById(R.id.pbooking_btn).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                FinalPlaceReservation fpr = new FinalPlaceReservation();
-                //장소 정보 연결
-                fpr.setPlace(bn.getText().toString());
-                fpr.setIntroduce(bi.getText().toString());
-                fpr.setName(nt.getText().toString());
-                fpr.setPhNum(pt.getText().toString());
-                fpr.setDay(dateText);
-                fpr.setTime(tt.getText().toString());
-
-                mDatabaseRefUser.child("예약정보").child(User.getUid()).push().setValue(fpr);
-
                 Toast.makeText(getApplicationContext(), "예약 완료되었습니다.", Toast.LENGTH_SHORT).show();
-
-                //엑티비티 하나를 제외하고 나머지 히스토리를 모두 지우는 코드
-                Intent i = new Intent(FinalTimeBooking.this, choice_menu.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(i);
+                startActivity(new Intent(FinalTimeBooking.this, choice_menu.class));
+                finish();
             }
         });
     }

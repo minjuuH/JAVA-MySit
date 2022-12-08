@@ -2,12 +2,14 @@ package com.example.mysitreview;
 
 public class UserSeatData {
     private String title;
-    private String sdate;
+    private String rdate;
+    private String  type;
 
     //생성자
-    public UserSeatData(String title, String sdate) {
+    public UserSeatData(String title, String rdate) {
         this.title = title;
-        this.sdate = sdate;
+        this.rdate = rdate;
+        this.type = type;
     }
 
     //Getter
@@ -15,8 +17,8 @@ public class UserSeatData {
         return title;
     }
 
-    public String getSdate() {
-        return sdate;
+    public String getRdate() {
+        return rdate;
     }
 
     //Setter
@@ -24,7 +26,14 @@ public class UserSeatData {
         this.title = title;
     }
 
-    public void setSdate(String sdate) {
-        this.sdate = sdate;
+    public void setRdate(String rdate) {
+        this.rdate = rdate;
     }
+
+
+    public String getType(){return type;}
+
+    public void setType(String type){ this.type = type;}
+
+
 }

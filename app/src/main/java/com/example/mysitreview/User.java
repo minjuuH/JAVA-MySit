@@ -4,6 +4,8 @@ public class User {
     public String name;
     public String firstLunch;
     public String phNum;
+    public String password;
+    public String idToken;
 
     public User(){
 
@@ -33,4 +35,8 @@ public class User {
     public String GetPhNum(){return phNum;}
 
     public void setPhNum(String phNum){this.phNum = phNum;}
+
+    public String GetPassword(){return password;}
+
+    public void setPassword(String password){this.password = password;}
 }

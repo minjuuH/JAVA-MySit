@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class UserSeatAdapter extends RecyclerView.Adapter<UserSeatAdapter.CustomViewHolder> {
-    private ArrayList<UserSeatData> arrayList;
+    private ArrayList<Board_Book> arrayList;
     private final rvInterface rvInterface;
 
     //Construct
-    public UserSeatAdapter(ArrayList<UserSeatData> arrayList, rvInterface rvInterface) {
+    public UserSeatAdapter(ArrayList<Board_Book> arrayList, rvInterface rvInterface) {
         this.arrayList = arrayList;
         this.rvInterface = rvInterface;
     }
@@ -30,9 +30,9 @@ public class UserSeatAdapter extends RecyclerView.Adapter<UserSeatAdapter.Custom
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        String sdate = "예약확정일 "+arrayList.get(position).getSdate();
+        String rtime = "예약확정일 "+arrayList.get(position).getRtime();
         holder.title.setText(arrayList.get(position).getTitle());
-        holder.seatingdate.setText(sdate);
+        holder.seatingdate.setText(rtime);
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override

@@ -4,9 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -51,6 +48,7 @@ public class SelectFreePost extends AppCompatActivity implements rvInterface {
 
         arrayList = new ArrayList<>();
         mainAdapter = new AdapterFreePost(arrayList,this);
+        //mainAdapter = new AdapterFreePost(arrayList, this, this);
         recyclerView.setAdapter(mainAdapter);       //설정한 adapter를 recyclerView에 설정
 
 

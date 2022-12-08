@@ -3,10 +3,11 @@ package com.example.mysitreview;
 // 사용자 계정 정보 모델 클래스
 public class UserAccount {
     public static User userClass;
-    private String idToken;
-    private String emailId;
-    private String password;
-    private String name;
+    public String idToken;
+    public String emailId;
+    public String password;
+    public String name;
+    public String phNum;
 
     public String getName() {
         return name;
@@ -24,7 +25,7 @@ public class UserAccount {
         this.phNum = phNum;
     }
 
-    private String phNum;
+
 
     public UserAccount() { }
 

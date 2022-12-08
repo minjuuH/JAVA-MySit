@@ -1,11 +1,8 @@
 package com.example.mysitreview;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,15 +10,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserInfoActivity extends AppCompatActivity implements rvInterface {
-    private ArrayList<UserSeatData> arrayList;
+    private ArrayList<Board_Book> arrayList;
     private UserSeatAdapter mainAdapter;
     private RecyclerView recyclerView;
     private LinearLayoutManager linearLayoutManager;
+    private DatabaseReference mDatabaseRef, mDatabase;
+    String uid;
+    FirebaseAuth mAuth;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,13 +46,40 @@ public class UserInfoActivity extends AppCompatActivity implements rvInterface {
 
         TextView reviseBnt = (TextView)findViewById(R.id.reviseBnt);
 
+        TextView name = (TextView)findViewById(R.id.Topusername);
+        TextView email = (TextView)findViewById(R.id.Topemail);
+
         EditText username = (EditText)findViewById(R.id.username);
         EditText userphone = (EditText)findViewById(R.id.userphone);
         EditText userpw = (EditText)findViewById(R.id.userpw);
+        EditText userem = (EditText)findViewById(R.id.useremail);
 
         Button pwcheck = (Button)findViewById(R.id.checkBnt);
         Button infocomplete = (Button)findViewById(R.id.completeBnt);
 
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        uid = user.getUid();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("myseat").child("UserAccount").child(uid).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    UserAccount user = dataSnapshot.getValue(UserAccount.class);
+                    username.setText(user.name);
+                    userphone.setText(user.phNum);
+                    userpw.setText(user.password);
+                    userem.setText(user.idToken);
+                    name.setText(user.name);
+                    email.setText(user.idToken);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+});
         //수정 텍스트뷰 클릭 시 실행 이벤트
         reviseBnt.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -123,11 +164,25 @@ public class UserInfoActivity extends AppCompatActivity implements rvInterface {
         mainAdapter = new UserSeatAdapter(arrayList, this);
         recyclerView.setAdapter(mainAdapter);       //설정한 adapter를 recyclerView에 설정
 
-        for(int i=0;i<5;i++){
-            UserSeatData mainData = new UserSeatData("title"+Integer.toString(i), "2022-xx-xx");
-            arrayList.add(mainData);
-            mainAdapter.notifyDataSetChanged();
-        }
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("book").child(uid);
+        mDatabaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                arrayList.clear();
+                for (DataSnapshot datasnapshot : snapshot.getChildren()) {
+                    Board_Book bb = datasnapshot.getValue(Board_Book.class);
+                    arrayList.add(bb);
+                }
+                mainAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("SelectFreePost", String.valueOf(error.toException()));
+            }
+
+        });
 
         //추후에 예외처리해야할 부분 -> 예약내역이 없을 경우 보이게, 예약내역이 있을 경우 보이지 않게
         findViewById(R.id.emptyBooking).setVisibility(View.GONE);
@@ -160,8 +215,10 @@ public class UserInfoActivity extends AppCompatActivity implements rvInterface {
         //예약 종류에 따라 다른 액티비티로 전환(자유->UserSeatingInfo_free / 장소->UserSeatingInfo_place)
         Intent intent = new Intent(UserInfoActivity.this, UserSeatingInfo_free.class);
         intent.putExtra("title", arrayList.get(position).getTitle());
-        intent.putExtra("sdate", arrayList.get(position).getSdate());
-
+        intent.putExtra("uid", uid);
         startActivity(intent);
+
+
+
     }
 }

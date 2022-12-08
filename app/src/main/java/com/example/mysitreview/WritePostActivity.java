@@ -1,27 +1,29 @@
 package com.example.mysitreview;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.InputStream;
-
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class WritePostActivity extends AppCompatActivity {
@@ -30,6 +32,8 @@ public class WritePostActivity extends AppCompatActivity {
     private final int SELECT_MOVIE = 2;
     ImageView imageView;
     Button button;
+    FirebaseAuth mAuth;
+    String uid, name1;
 
     // 영상선택
     private void doSelectMovie()
@@ -51,6 +55,10 @@ public class WritePostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_write_post);
 
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        uid = user.getUid();
+
         imageView = findViewById(R.id.image);
         button = (Button)findViewById(R.id.imagebutton);
         // 이미지 선택 버튼
@@ -68,7 +76,7 @@ public class WritePostActivity extends AppCompatActivity {
         EditText Opentime = findViewById(R.id.tv_openTime);
         EditText Endtime = findViewById(R.id.tv_endTime);
         EditText Content = findViewById(R.id.contenttext);
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("장소 글작성 정보");
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference();
         // 확인 버튼
         findViewById(R.id.btn_check).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -84,7 +92,32 @@ public class WritePostActivity extends AppCompatActivity {
                     wp.setStarttime(stropentime);
                     wp.setEndtime(strendtime);
                     wp.setContent(strcontent);
-                    mDatabaseRef.child(strtitle).setValue(wp);
+                    wp.setType("장소");
+                    wp.setNow_popul("1");
+                    wp.setName("1");
+                    wp.setUid(uid);
+                    wp.setMax_popul("3");
+                    mDatabaseRef.child("장소 글작성 정보").child(strtitle).setValue(wp);
+
+                    mDatabaseRef.child("myseat").child("UserAccount").child(uid).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                User user = dataSnapshot.getValue(User.class);
+                                name1 = user.name;
+                                Map<String, Object> taskMap = new HashMap<String, Object>();
+                                taskMap.put("name", name1);
+
+                                mDatabaseRef.child("장소 글작성 정보").child(strtitle).updateChildren(taskMap);
+
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+
+                    });
                     Toast.makeText(getApplicationContext(), "저장되었습니다.", Toast.LENGTH_SHORT).show();
 
                     startActivity(new Intent(WritePostActivity.this, SelectPlace.class));

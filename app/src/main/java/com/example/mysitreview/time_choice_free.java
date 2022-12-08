@@ -40,7 +40,7 @@ public class time_choice_free extends AppCompatActivity {
     CalendarView calView1;
     int selectYear, selectMonth, selectDay;
     public int posit;
-    public String date, phNum, name, content,title;
+    public String date, phNum, name, content,title, dtime, etime;
     DatabaseReference mDatabaseRef;
 
     FirebaseAuth mAuth;
@@ -112,7 +112,6 @@ public class time_choice_free extends AppCompatActivity {
     }
     public void btnEventListener(){
 
-        date = (selectYear +"년"+ selectMonth +"월" +selectDay+"일");
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -144,9 +143,11 @@ public class time_choice_free extends AppCompatActivity {
         bb.setName("1");
         bb.setPhNum("1");
         bb.setRtime(today);
-        bb.setDate(date);
+        bb.setDate("1");
         bb.setUid(uid);
         bb.setDtime("1");
+        bb.setType("자유");
+        bb.setEtime("1");
 
         mDatabase.child("book").child(uid).child(title).setValue(bb);
 
@@ -179,8 +180,17 @@ public class time_choice_free extends AppCompatActivity {
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     Board board = dataSnapshot.getValue(Board.class);
                     content = board.intro;
+                    dtime = board.stime;
+                    date = board.sdate;
+                    etime = board.etime;
+
+
                     Map<String, Object> taskMap = new HashMap<String, Object>();
                     taskMap.put("content", content);
+                    taskMap.put("date",date);
+                    taskMap.put("dtime",dtime);
+                    taskMap.put("etime",etime);
+
 
                     mDatabase.child("book").child(uid).child(title).updateChildren(taskMap);
 
@@ -194,13 +204,10 @@ public class time_choice_free extends AppCompatActivity {
 
         });
 
-        Map<String, Object> taskMap = new HashMap<String, Object>();
-        taskMap.put("dtime", items[posit]);
-
-        mDatabase.child("book").child(uid).child(title).updateChildren(taskMap);
 
 
-        Toast.makeText(getApplicationContext(), date +  items[posit] + "에 예약되었습니다.", Toast.LENGTH_SHORT).show();
+
+        Toast.makeText(getApplicationContext(), date +  dtime + "에 시작하는 "+ title +"에예약되었습니다.", Toast.LENGTH_SHORT).show();
         //값을 전달하기 위한 intent 생성
         Intent intent = new Intent(time_choice_free.this, FinalBooking.class);
 
@@ -210,7 +217,7 @@ public class time_choice_free extends AppCompatActivity {
         intent.putExtra("uid", uid);
         intent.putExtra("title",title);
 
-
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         //time_booking_final 시작
         startActivity(intent);
     }

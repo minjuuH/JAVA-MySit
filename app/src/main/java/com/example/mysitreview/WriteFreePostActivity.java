@@ -1,24 +1,16 @@
 package com.example.mysitreview;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-
-import android.content.ContentResolver;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import android.webkit.MimeTypeMap;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,7 +19,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,38 +39,35 @@ public class WriteFreePostActivity extends AppCompatActivity {
     String uid;
 
 
-    EditText write_title , write_content, write_intro, write_min_Popul, write_max_popul, write_stime, write_etime;
+    EditText write_title , write_content, write_intro, write_min_Popul, write_max_popul, write_stime, write_etime, editText1, editText2;
     // 제목 , 내용, 한줄소개, 최소인원, 최대인원, 시작시간, 종료시간
 
     ArrayList<String> writeKey = null;
     ArrayList<String> writeValue = null;
 
-    // 영상선택
-    private void doSelectMovie()
-    {
-        Intent i = new Intent(Intent.ACTION_GET_CONTENT);
-        i.setType("video/*");
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        try
-        {
-            startActivityForResult(i, SELECT_MOVIE);
-        } catch (android.content.ActivityNotFoundException e)
-        {
-            e.printStackTrace();
-        }
-    }
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //finish();//인텐트 종료
+        overridePendingTransition(0, 0);//인텐트 효과 없애기
+        Intent intent = getIntent(); //인텐트
+        //startActivity(intent); //액티비티 열기
+        overridePendingTransition(0, 0);//인텐트 효과 없애기
+
         setContentView(R.layout.activity_write_free_post);
         String StartDay = getIntent().getStringExtra("StartDate");
         String EndDay = getIntent().getStringExtra("EndDate");;
-        EditText editText1 = findViewById(R.id.StartDay);
-        EditText editText2 = findViewById(R.id.EndDay);
+        editText1 = findViewById(R.id.StartDay);
+        editText2 = findViewById(R.id.EndDay);
         editText1.setText(StartDay);
         editText2.setText(EndDay);
-        StartDay = getIntent().getStringExtra("StartDate");
-        EndDay = getIntent().getStringExtra("EndDate");;
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -89,10 +77,12 @@ public class WriteFreePostActivity extends AppCompatActivity {
         write_title = (EditText) findViewById(R.id.titleEditText);
         write_content = (EditText) findViewById(R.id.contentsEditText);
         write_intro = (EditText) findViewById(R.id.tv_introduce);
-        write_min_Popul = (EditText) findViewById(R.id.numOfpeople);
+        write_min_Popul = (EditText) findViewById(R.id.tv_openTime);
         write_max_popul = (EditText) findViewById(R.id.numOfpeople2);
-        write_stime = (EditText) findViewById(R.id.tv_openTime);
-        write_etime = (EditText) findViewById(R.id.tv_endTime);
+
+
+
+
 
         writeKey = new ArrayList<>();
         writeValue = new ArrayList<>();
@@ -110,7 +100,7 @@ public class WriteFreePostActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE);
             }
         });
-       /* findViewById(R.id.StartDay).setOnClickListener(new View.OnClickListener() {
+        /*findViewById(R.id.StartDay).setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "시작 날을 선택합니다.", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(WriteFreePostActivity.this, Choice_Day_From_WriteFreePost.class));
@@ -122,7 +112,6 @@ public class WriteFreePostActivity extends AppCompatActivity {
                 startActivity(new Intent(WriteFreePostActivity.this, Choice_Day_From_WriteFreePost.class));
             }
         });*/
-
 
 
 
@@ -140,21 +129,14 @@ public class WriteFreePostActivity extends AppCompatActivity {
             return;
         }
         if(write_min_Popul.getText().toString().equals("")){
-            Toast.makeText(this , "최소인원을 입력하세요" , Toast.LENGTH_SHORT).show();
+            Toast.makeText(this , "시작시간을 입력하세요" , Toast.LENGTH_SHORT).show();
             return;
         }
         if(write_max_popul.getText().toString().equals("")){
             Toast.makeText(this , "최대인원을 입력하세요" , Toast.LENGTH_SHORT).show();
             return;
         }
-        if(write_stime.getText().toString().equals("")){
-            Toast.makeText(this , "시작시간을 입력하세요" , Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if(write_etime.getText().toString().equals("")){
-            Toast.makeText(this , "종료시간을 입력하세요" , Toast.LENGTH_SHORT).show();
-            return;
-        }
+
         if(write_intro.getText().toString().equals("")){
             Toast.makeText(this , "한줄소개를 입력하세요" , Toast.LENGTH_SHORT).show();
             return;
@@ -164,8 +146,8 @@ public class WriteFreePostActivity extends AppCompatActivity {
         // 전역으로 쓰는 user에 저장된 값을 불러옴
 
         //날짜 포맷
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
-        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy년MM월dd일");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy년MM월dd일 HH:mm:ss");
 
         Date time = new Date();
 
@@ -178,14 +160,16 @@ public class WriteFreePostActivity extends AppCompatActivity {
         board.setTitle(write_title.getText().toString());
         board.setContent(write_content.getText().toString());
         board.setIntro(write_intro.getText().toString());
-        board.setMin_Popul(write_min_Popul.getText().toString());
+        board.setSdate(editText1.getText().toString());
         board.setMax_popul(write_max_popul.getText().toString());
-        board.setStime(write_stime.getText().toString());
-        board.setEtime(write_etime.getText().toString());
+        board.setEtime(editText2.getText().toString());
         board.setUid(uid);
         board.setDate(today);
         board.setOrder_date(order_today);
         board.setName("1");
+        board.setNow_popul("0");
+        board.setType("자유");
+        board.setStime(write_min_Popul.getText().toString());
 
         mDatabase.child("board").child(write_title.getText().toString()).setValue(board);
 

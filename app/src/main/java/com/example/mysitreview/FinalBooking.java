@@ -46,10 +46,13 @@ public class FinalBooking extends AppCompatActivity {
         TextView dt = (TextView)findViewById(R.id.datetext);
         TextView ct = (TextView)findViewById(R.id.counttext);
         TextView rv = (TextView)findViewById(R.id.remainView);
+        TextView reserv = (TextView)findViewById(R.id.date);
+        TextView start = (TextView)findViewById(R.id.time);
+
 
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("book");
-        mDatabaseRef.child(uid).child(title).addValueEventListener((new ValueEventListener() {
+        mDatabaseRef.child(uid).child(title).addListenerForSingleValueEvent((new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Board_Book bb = snapshot.getValue(Board_Book.class);
@@ -57,8 +60,11 @@ public class FinalBooking extends AppCompatActivity {
                 bi.setText(bb.getContent());
                 nt.setText(bb.getName());
                 pt.setText(bb.getPhNum());
-                dt.setText(bb.getDate());
-                ct.setText(bb.getDtime());
+                dt.setText(bb.getDate()+" ~ "+bb.getEtime());
+                ct.setText(bb.getRtime() + "  "+bb.getDtime());
+                reserv.setText("모집기간");
+                start.setText(title+" 시작");
+
             }
 
             @Override
@@ -77,3 +83,4 @@ public class FinalBooking extends AppCompatActivity {
         });
     }
 }
+
