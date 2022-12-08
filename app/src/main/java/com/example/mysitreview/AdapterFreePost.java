@@ -3,7 +3,6 @@ package com.example.mysitreview;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -23,22 +22,24 @@ public class AdapterFreePost extends RecyclerView.Adapter<AdapterFreePost.PlaceV
 
     @NonNull
     @Override
-    public AdapterFreePost.PlaceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PlaceViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_view, parent, false);
         PlaceViewHolder holder = new PlaceViewHolder(view, rvInterface);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterFreePost.PlaceViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PlaceViewHolder holder, int position) {
         //arrayList의 요소를 item 레이아웃의 객체에 지정
         BoardAdapt ba = arrayList.get(position);
-        //holder.pic.setImageResource(arrayList.get(position).getPic());
+
+        String deadline = "~ "+ba.getEtime();
+        String remain = ba.getNow_popul() +" / "+ba.getMax_popul();
+
         holder.title.setText(ba.getTitle());
         holder.intro.setText(ba.getIntro());
-        String dldate = ba.getStime()+" - "+ba.getEtime();
-        holder.deadline.setText(dldate);
-        holder.remain.setText(ba.getMax_popul());
+        holder.deadline.setText(deadline);
+        holder.remain.setText(remain);
 
         //클릭 이벤트 구현?
         //holder.itemView.setTag(position);

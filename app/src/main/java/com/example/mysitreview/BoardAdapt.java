@@ -5,6 +5,7 @@ public class BoardAdapt {
     private String intro;
     private String stime;
     private String etime;
+    private String now_popul;
     private String max_popul;
     private String introduce;
 
@@ -39,6 +40,8 @@ public class BoardAdapt {
     }
     public void setEtime(String etime) {this.etime = etime;}
 
+    public String getNow_popul(){return now_popul;}
+    public void setNow_popul(String now_popul){ this.now_popul = now_popul;}
 
     public String getIntroduce() {
         return introduce;
